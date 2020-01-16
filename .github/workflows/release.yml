@@ -1,0 +1,27 @@
+# SPDX-License-Identifier: MIT
+name: Create Release
+
+on:
+  push:
+    tags:
+    - 'v*.*.*'
+
+jobs:
+  release-build:
+    runs-on: ubuntu-18.04
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Extract release notes
+      id: extract_release_notes
+      uses: ffurrer2/extract-release-notes@master
+    - name: Create release
+      uses: actions/create-release@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: ${{ github.ref }}
+        draft: true
+        prerelease: false
+        body: ${{ steps.extract_release_notes.outputs.release_notes }}

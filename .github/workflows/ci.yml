@@ -1,0 +1,125 @@
+# SPDX-License-Identifier: MIT
+name: CI
+
+on:
+  push:
+    branches:
+    - master
+    - feature/*
+
+jobs:
+  intergration-test-1:
+    runs-on: ubuntu-18.04
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Self test
+      id: extract_release_notes
+      uses: ffurrer2/extract-release-notes@master
+    - name: Assert release_notes is not empty
+      env:
+        RELEASE_NOTES: ${{steps.extract_release_notes.outputs.release_notes}}
+      run: |
+        test -v RELEASE_NOTES
+        test -n "$RELEASE_NOTES"
+
+  intergration-test-2:
+    runs-on: ubuntu-18.04
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Self test
+      id: extract_release_notes
+      uses: ffurrer2/extract-release-notes@master
+      with:
+        changelog_file: test/resources/CHANGELOG_1.md
+    - name: Assert release_notes contains expected content
+      env:
+        RELEASE_NOTES: ${{steps.extract_release_notes.outputs.release_notes}}
+      run: |
+        readonly EXPECTED_OUTPUT=$(cat <<-EOF
+        ### Added
+
+        - Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+        - At vero eos et accusam et justo duo dolores et ea rebum.
+        - Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+        - Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+        - At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+        ### Changed
+
+        - At vero eos et accusam et justo duo dolores et ea rebum.
+        - Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+        ### Removed
+
+        - At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+        EOF
+        )
+        diff <(echo "$RELEASE_NOTES") <(echo "$EXPECTED_OUTPUT")
+
+  intergration-test-3:
+    runs-on: ubuntu-18.04
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Self test
+      id: extract_release_notes
+      uses: ffurrer2/extract-release-notes@master
+      with:
+        changelog_file: test/resources/CHANGELOG_2.md
+    - name: Assert release_notes contains expected content
+      env:
+        RELEASE_NOTES: ${{steps.extract_release_notes.outputs.release_notes}}
+      run: |
+        readonly EXPECTED_OUTPUT=$(cat <<-EOF
+        ### Added
+
+        - Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+        - At vero eos et accusam et justo duo dolores et ea rebum.
+        - Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+        - Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+        - At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+        ### Changed
+
+        - At vero eos et accusam et justo duo dolores et ea rebum.
+        - Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+        EOF
+        )
+        diff <(echo "$RELEASE_NOTES") <(echo "$EXPECTED_OUTPUT")
+
+  intergration-test-4:
+    runs-on: ubuntu-18.04
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Self test
+      id: extract_release_notes
+      uses: ffurrer2/extract-release-notes@master
+      with:
+        changelog_file: test/resources/CHANGELOG_3.md
+    - name: Assert release_notes contains expected content
+      env:
+        RELEASE_NOTES: ${{steps.extract_release_notes.outputs.release_notes}}
+      run: |
+        readonly EXPECTED_OUTPUT=$(cat <<-EOF
+        ### Added
+
+        - Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+        EOF
+        )
+        diff <(echo "$RELEASE_NOTES") <(echo "$EXPECTED_OUTPUT")
+
+  intergration-test-5:
+    runs-on: ubuntu-18.04
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Self test
+      uses: ffurrer2/extract-release-notes@master
+      with:
+        release_notes_file: ./RELEASE_NOTES.md
+    - name: Assert release_notes_file exist
+      run: |
+        test -f ./RELEASE_NOTES.md

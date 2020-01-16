@@ -1,0 +1,5 @@
+# SPDX-License-Identifier: MIT
+.idea/
+.vscode/
+
+RELEASE_NOTES.md
