@@ -9,7 +9,7 @@ This GitHub Action extracts release notes from a [Keep a Changelog](https://keep
 
 ## Usage
 
-### Pre-requisites
+### Prerequisites
 
 - Create a `CHANGELOG.md` file based on the changelog format of the [Keep a Changelog](https://keepachangelog.com/) project.
 - Create a workflow `.yml` file in your `.github/workflows` directory. An [example workflow](#example-workflow---create-a-release-with-release-notes) is available below. For more information, reference the GitHub Help Documentation for [Creating a workflow file](https://help.github.com/en/articles/configuring-a-workflow#creating-a-workflow-file).
