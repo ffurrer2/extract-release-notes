@@ -1,40 +1,22 @@
 # SPDX-License-Identifier: MIT
-name: CI
+name: Integration test
 
 on:
   push:
     branches:
     - master
-    - feature/*
     paths-ignore:
     - '**.md'
 
 jobs:
-  test-1:
-    runs-on: ubuntu-18.04
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: Create bats Docker image
-      run: |
-        docker build --pull --tag docker.pkg.github.com/ffurrer2/extract-release-notes/bats:latest test/bats
-    - name: Run bats tests
-      run: |
-        docker run \
-                 --rm \
-                 -v /var/run/docker.sock:/var/run/docker.sock \
-                 -v "$(pwd):/workspace" \
-                 docker.pkg.github.com/ffurrer2/extract-release-notes/bats:latest \
-                 /workspace/test/bats
-
-  test-2:
+  intergration-test-1:
     runs-on: ubuntu-18.04
     steps:
     - name: Checkout
       uses: actions/checkout@v2
     - name: Self test
       id: extract_release_notes
-      uses: ./
+      uses: ffurrer2/extract-release-notes@master
     - name: Assert release_notes is not empty
       env:
         RELEASE_NOTES: ${{ steps.extract_release_notes.outputs.release_notes }}
@@ -42,30 +24,30 @@ jobs:
         test -v RELEASE_NOTES
         test -n "$RELEASE_NOTES"
 
-  test-3:
+  intergration-test-2:
     runs-on: ubuntu-18.04
     steps:
     - name: Checkout
       uses: actions/checkout@v2
     - name: Self test
-      uses: ./
+      uses: ffurrer2/extract-release-notes@master
       with:
         release_notes_file: ./RELEASE_NOTES.md
     - name: Assert release_notes_file exist
       run: |
         test -f ./RELEASE_NOTES.md
 
-  test-4:
+  intergration-test-3:
     runs-on: ubuntu-18.04
     steps:
     - name: Checkout
       uses: actions/checkout@v2
     - name: Self test
       id: extract_release_notes
-      uses: ./
+      uses: ffurrer2/extract-release-notes@master
       with:
         changelog_file: test/resources/CHANGELOG_1.md
-    - name: Assert release_notes output contains expected content
+    - name: Assert release_notes contains expected content
       env:
         RELEASE_NOTES: ${{ steps.extract_release_notes.outputs.release_notes }}
       run: |
@@ -90,17 +72,17 @@ jobs:
         )
         diff <(echo "$RELEASE_NOTES") <(echo "$expected_output")
 
-  test-5:
+  intergration-test-4:
     runs-on: ubuntu-18.04
     steps:
     - name: Checkout
       uses: actions/checkout@v2
     - name: Self test
       id: extract_release_notes
-      uses: ./
+      uses: ffurrer2/extract-release-notes@master
       with:
         changelog_file: test/resources/CHANGELOG_2.md
-    - name: Assert release_notes output contains expected content
+    - name: Assert release_notes contains expected content
       env:
         RELEASE_NOTES: ${{ steps.extract_release_notes.outputs.release_notes }}
       run: |
@@ -121,17 +103,17 @@ jobs:
         )
         diff <(echo "$RELEASE_NOTES") <(echo "$expected_output")
 
-  test-6:
+  intergration-test-5:
     runs-on: ubuntu-18.04
     steps:
     - name: Checkout
       uses: actions/checkout@v2
     - name: Self test
       id: extract_release_notes
-      uses: ./
+      uses: ffurrer2/extract-release-notes@master
       with:
         changelog_file: test/resources/CHANGELOG_3.md
-    - name: Assert release_notes output contains expected content
+    - name: Assert release_notes contains expected content
       env:
         RELEASE_NOTES: ${{ steps.extract_release_notes.outputs.release_notes }}
       run: |
@@ -143,14 +125,14 @@ jobs:
         )
         diff <(echo "$RELEASE_NOTES") <(echo "$expected_output")
 
-  test-7:
+  intergration-test-6:
     runs-on: ubuntu-18.04
     steps:
     - name: Checkout
       uses: actions/checkout@v2
     - name: Self test
       id: extract_release_notes
-      uses: ./
+      uses: ffurrer2/extract-release-notes@master
       with:
         changelog_file: test/resources/CHANGELOG_1.md
         release_notes_file: ./RELEASE_NOTES.md
@@ -177,4 +159,4 @@ jobs:
         - At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
         EOF
         )
-        diff  <(cat ./RELEASE_NOTES.md) <(echo -n "$expected_output")
+        diff <(cat ./RELEASE_NOTES.md) <(echo -n "$expected_output")
