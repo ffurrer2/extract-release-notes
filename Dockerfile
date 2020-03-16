@@ -3,8 +3,6 @@ FROM alpine:3.11.3
 
 RUN apk --no-cache add bash
 
-WORKDIR /github/workspace
-
 COPY LICENSE /LICENSE
 COPY src/extract_release_notes.sh /extract_release_notes.sh
 
