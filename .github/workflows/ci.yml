@@ -10,6 +10,17 @@ on:
     - '**.md'
 
 jobs:
+  static-analysis:
+    runs-on: ubuntu-18.04
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Shellcheck
+      uses: docker://koalaman/shellcheck:v0.7.0
+      with:
+        entrypoint: /bin/shellcheck
+        args: '--check-sourced --color=always --format=tty --enable=all --shell=bash --severity=style src/extract_release_notes.sh'
+
   test-1:
     runs-on: ubuntu-18.04
     steps:
