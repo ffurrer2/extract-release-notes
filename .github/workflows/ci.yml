@@ -26,17 +26,10 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-    - name: Create bats Docker image
-      run: |
-        docker build --pull --tag docker.pkg.github.com/ffurrer2/extract-release-notes/bats:latest test/bats
-    - name: Run bats tests
-      run: |
-        docker run \
-                 --rm \
-                 -v /var/run/docker.sock:/var/run/docker.sock \
-                 -v "$(pwd):/workspace" \
-                 docker.pkg.github.com/ffurrer2/extract-release-notes/bats:latest \
-                 /workspace/test/bats
+    - name: Run Bats tests
+      uses: ./.github/actions/bats
+      with:
+        args: /github/workspace/test/bats
 
   test-2:
     runs-on: ubuntu-18.04

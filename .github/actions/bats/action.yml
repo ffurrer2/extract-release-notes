@@ -1,0 +1,7 @@
+# SPDX-License-Identifier: MIT
+name: 'Bash Automated Testing System with helper libraries and Docker support'
+author: 'Felix Furrer'
+description: 'TAP-compliant testing framework for Bash with helper libraries and Docker support.'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
