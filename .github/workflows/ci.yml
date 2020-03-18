@@ -21,7 +21,7 @@ jobs:
         entrypoint: /bin/shellcheck
         args: '--check-sourced --color=always --format=tty --enable=all --shell=bash --severity=style src/extract_release_notes.sh'
 
-  test-1:
+  bats-tests:
     runs-on: ubuntu-18.04
     steps:
     - name: Checkout
@@ -31,7 +31,7 @@ jobs:
       with:
         args: /github/workspace/test/bats
 
-  test-2:
+  self-test-1:
     runs-on: ubuntu-18.04
     steps:
     - name: Checkout
@@ -46,7 +46,7 @@ jobs:
         test -v RELEASE_NOTES
         test -n "$RELEASE_NOTES"
 
-  test-3:
+  self-test-2:
     runs-on: ubuntu-18.04
     steps:
     - name: Checkout
@@ -59,7 +59,7 @@ jobs:
       run: |
         test -f ./RELEASE_NOTES.md
 
-  test-4:
+  self-test-3:
     runs-on: ubuntu-18.04
     steps:
     - name: Checkout
@@ -94,7 +94,7 @@ jobs:
         )
         diff <(echo "$RELEASE_NOTES") <(echo "$expected_output")
 
-  test-5:
+  self-test-4:
     runs-on: ubuntu-18.04
     steps:
     - name: Checkout
@@ -125,7 +125,7 @@ jobs:
         )
         diff <(echo "$RELEASE_NOTES") <(echo "$expected_output")
 
-  test-6:
+  self-test-5:
     runs-on: ubuntu-18.04
     steps:
     - name: Checkout
@@ -147,7 +147,7 @@ jobs:
         )
         diff <(echo "$RELEASE_NOTES") <(echo "$expected_output")
 
-  test-7:
+  self-test-6:
     runs-on: ubuntu-18.04
     steps:
     - name: Checkout
