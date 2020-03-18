@@ -1,0 +1,14 @@
+name: Move major tag
+
+on:
+  release:
+    types:
+    - published
+
+jobs:
+  actions-tagger:
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: Actions-R-Us/actions-tagger@latest
+      env:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
