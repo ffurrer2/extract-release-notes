@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: MIT
 name: Move major tag
 
 on:
@@ -9,6 +10,6 @@ jobs:
   actions-tagger:
     runs-on: ubuntu-18.04
     steps:
-    - uses: Actions-R-Us/actions-tagger@latest
+    - uses: Actions-R-Us/actions-tagger@v1
       env:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
