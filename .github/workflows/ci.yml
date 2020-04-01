@@ -10,7 +10,7 @@ on:
     - '**.md'
 
 jobs:
-  static-analysis:
+  shellcheck:
     runs-on: ubuntu-18.04
     steps:
     - name: Checkout
@@ -20,6 +20,16 @@ jobs:
       with:
         entrypoint: /bin/shellcheck
         args: '--check-sourced --color=always --format=tty --enable=all --shell=bash --severity=style src/extract_release_notes.sh'
+
+  yamllint:
+    runs-on: ubuntu-18.04
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: yamllint
+      uses: docker://ffurrer/yamllint:latest
+      with:
+        args: '--format auto --strict .'
 
   bats-tests:
     runs-on: ubuntu-18.04

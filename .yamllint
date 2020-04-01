@@ -1,0 +1,18 @@
+---
+extends: default
+
+rules:
+  empty-values: enable
+  document-start: disable
+  line-length: disable
+  indentation:
+    spaces: 2
+    indent-sequences: false
+  truthy:
+    allowed-values:
+    - 'true'
+    - 'false'
+    - 'on'
+  quoted-strings:
+    quote-type: single
+    required: false
