@@ -16,7 +16,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
     - name: Shellcheck
-      uses: docker://koalaman/shellcheck:v0.7.0
+      uses: docker://koalaman/shellcheck:latest
       with:
         entrypoint: /bin/shellcheck
         args: '--check-sourced --color=always --format=tty --enable=all --shell=bash --severity=style src/extract_release_notes.sh'
