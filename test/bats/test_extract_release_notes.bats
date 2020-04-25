@@ -63,7 +63,7 @@ EOF
     assert_file_exist "$PROFILE_SCRIPT"
 }
 
-@test "test resources shoud exist" {
+@test "testdata should exist" {
   assert_file_exist "$TEST_CHANGELOG_FILE_1"
   assert_file_exist "$TEST_CHANGELOG_FILE_2"
   assert_file_exist "$TEST_CHANGELOG_FILE_3"
