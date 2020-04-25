@@ -17,6 +17,13 @@ All notable changes to this project will be documented in this file.
 
 ### Security
 
+## [1.2.0] - 2020-04-25
+
+### Changed
+
+* Alpine base image updated
+* CI & release workflows improved
+
 ## [1.1.0] - 2020-02-23
 
 ### Changed
