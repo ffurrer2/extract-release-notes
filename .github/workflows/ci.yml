@@ -19,7 +19,7 @@ jobs:
       uses: docker://koalaman/shellcheck:latest
       with:
         entrypoint: /bin/shellcheck
-        args: '--check-sourced --color=always --format=tty --enable=all --shell=bash --severity=style src/extract_release_notes.sh'
+        args: '--check-sourced --color=auto --format=tty --enable=all --shell=bash --severity=style src/extract_release_notes.sh'
 
   yamllint:
     runs-on: ubuntu-18.04
