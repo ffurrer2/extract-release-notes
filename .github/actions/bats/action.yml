@@ -4,4 +4,5 @@ author: 'Felix Furrer'
 description: 'TAP-compliant testing framework for Bash.'
 runs:
   using: 'docker'
-  image: 'Dockerfile'
+  image: 'docker://ffurrer/bats:1.2.0'
+  entrypoint: .github/actions/bats/entrypoint.sh
