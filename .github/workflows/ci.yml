@@ -37,11 +37,11 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
     - name: Run Bats tests
-      uses: ffurrer2/bats-action@v1
+      uses: ffurrer2/bats-action@master
       with:
-        args: /github/workspace/test/bats
         main: gawk sed
         community: docker-cli
+        args: /github/workspace/test/bats
 
   self-test-1:
     runs-on: ubuntu-18.04
