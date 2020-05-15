@@ -78,7 +78,7 @@ jobs:
       id: extract_release_notes
       uses: ./
       with:
-        changelog_file: test/resources/CHANGELOG_1.md
+        changelog_file: test/testdata/CHANGELOG_1.md
     - name: Assert release_notes output contains expected content
       env:
         RELEASE_NOTES: ${{ steps.extract_release_notes.outputs.release_notes }}
@@ -113,7 +113,7 @@ jobs:
       id: extract_release_notes
       uses: ./
       with:
-        changelog_file: test/resources/CHANGELOG_2.md
+        changelog_file: test/testdata/CHANGELOG_2.md
     - name: Assert release_notes output contains expected content
       env:
         RELEASE_NOTES: ${{ steps.extract_release_notes.outputs.release_notes }}
@@ -144,7 +144,7 @@ jobs:
       id: extract_release_notes
       uses: ./
       with:
-        changelog_file: test/resources/CHANGELOG_3.md
+        changelog_file: test/testdata/CHANGELOG_3.md
     - name: Assert release_notes output contains expected content
       env:
         RELEASE_NOTES: ${{ steps.extract_release_notes.outputs.release_notes }}
@@ -166,7 +166,7 @@ jobs:
       id: extract_release_notes
       uses: ./
       with:
-        changelog_file: test/resources/CHANGELOG_1.md
+        changelog_file: test/testdata/CHANGELOG_1.md
         release_notes_file: ./RELEASE_NOTES.md
     - name: Assert release_notes_file contains expected content
       env:
