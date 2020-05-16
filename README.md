@@ -17,15 +17,15 @@ This GitHub Action extracts release notes from a [Keep a Changelog](https://keep
 ### Inputs
 
 | Input                             | Description                                                     |
-|-----------------------------------|-----------------------------------------------------------------|
+| --------------------------------- | --------------------------------------------------------------- |
 | `changelog_file` _(optional)_     | The input path of the changelog file. Default: `./CHANGELOG.md` |
 | `release_notes_file` _(optional)_ | The output path of the (optional) release notes file.           |
 
 ### Outputs
 
-| Output           | Description                |
-|------------------|----------------------------|
-| `release_notes`  | The escaped release notes. |
+| Output          | Description                |
+| --------------- | -------------------------- |
+| `release_notes` | The escaped release notes. |
 
 ### Example workflow - create a release with release notes
 
@@ -37,7 +37,7 @@ name: Create Release
 on:
   push:
     tags:
-    - '*.*.*'
+      - "*.*.*"
 
 jobs:
   build:
@@ -50,7 +50,7 @@ jobs:
         id: extract_release_notes
         uses: ffurrer2/extract-release-notes@v1
       - name: Create release
-        uses: actions/create-release@master
+        uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -101,9 +101,3 @@ jobs:
 ## License
 
 The scripts and documentation in this project are released under the [MIT License](LICENSE).
-
-As with all Docker images, these likely also contain other software which may be under other licenses (such as Bash, etc from the base distribution, along with any direct or indirect dependencies of the primary software being contained).
-
-Some additional license information which was able to be auto-detected might be found in the [repo-info repository's alpine/ directory](https://github.com/docker-library/repo-info/tree/master/repos/alpine).
-
-As for any image usage, it is the image user's responsibility to ensure that any use of this image complies with any relevant licenses for all software contained within.

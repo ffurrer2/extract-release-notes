@@ -60,7 +60,7 @@ EOF
 )
 
 @test "profile_script should exist" {
-    assert_file_exist "$PROFILE_SCRIPT"
+  assert_file_exist "$PROFILE_SCRIPT"
 }
 
 @test "testdata should exist" {
@@ -70,99 +70,99 @@ EOF
 }
 
 @test "extract_release_notes should print ::set-output message correctly, when changelog contains two releases" {
-    export INPUT_CHANGELOG_FILE="$TEST_CHANGELOG_FILE_1"
-    # shellcheck source=../../src/extract_release_notes.sh
-    source "$PROFILE_SCRIPT"
+  export INPUT_CHANGELOG_FILE="$TEST_CHANGELOG_FILE_1"
+  # shellcheck source=../../src/extract_release_notes.sh
+  source "$PROFILE_SCRIPT"
 
-    run extract_release_notes
+  run extract_release_notes
 
-    assert_success
-    assert_output --partial "$EXPECTED_OUTPUT_1"
+  assert_success
+  assert_output --partial "$EXPECTED_OUTPUT_1"
 
-    unset INPUT_CHANGELOG_FILE
+  unset INPUT_CHANGELOG_FILE
 }
 
 @test "extract_release_notes should print ::set-output message correctly, when changelog contains one release" {
-    # shellcheck disable=SC2031,SC2030
-    export INPUT_CHANGELOG_FILE="$TEST_CHANGELOG_FILE_2"
-    # shellcheck source=../../src/extract_release_notes.sh
-    source "$PROFILE_SCRIPT"
+  # shellcheck disable=SC2031,SC2030
+  export INPUT_CHANGELOG_FILE="$TEST_CHANGELOG_FILE_2"
+  # shellcheck source=../../src/extract_release_notes.sh
+  source "$PROFILE_SCRIPT"
 
-    run extract_release_notes
+  run extract_release_notes
 
-    assert_success
-    assert_output --partial "$EXPECTED_OUTPUT_2"
+  assert_success
+  assert_output --partial "$EXPECTED_OUTPUT_2"
 
-    unset INPUT_CHANGELOG_FILE
+  unset INPUT_CHANGELOG_FILE
 }
 
 @test "extract_release_notes should print ::set-output message correctly, when changelog contains one minimal release" {
-    # shellcheck disable=SC2031,SC2030
-    export INPUT_CHANGELOG_FILE="$TEST_CHANGELOG_FILE_3"
-    # shellcheck source=../../src/extract_release_notes.sh
-    source "$PROFILE_SCRIPT"
+  # shellcheck disable=SC2031,SC2030
+  export INPUT_CHANGELOG_FILE="$TEST_CHANGELOG_FILE_3"
+  # shellcheck source=../../src/extract_release_notes.sh
+  source "$PROFILE_SCRIPT"
 
-    run extract_release_notes
+  run extract_release_notes
 
-    assert_success
-    assert_output --partial "$EXPECTED_OUTPUT_3"
+  assert_success
+  assert_output --partial "$EXPECTED_OUTPUT_3"
 
-    unset INPUT_CHANGELOG_FILE
+  unset INPUT_CHANGELOG_FILE
 }
 
 @test "extract_release_notes should create release_notes_file correctly, when changelog contains two releases" {
-    # shellcheck disable=SC2031,SC2030
-    export INPUT_CHANGELOG_FILE="$TEST_CHANGELOG_FILE_1"
-    INPUT_RELEASE_NOTES_FILE="$(mktemp)"
-    export INPUT_RELEASE_NOTES_FILE
-    # shellcheck source=../../src/extract_release_notes.sh
-    source "$PROFILE_SCRIPT"
+  # shellcheck disable=SC2031,SC2030
+  export INPUT_CHANGELOG_FILE="$TEST_CHANGELOG_FILE_1"
+  INPUT_RELEASE_NOTES_FILE="$(mktemp)"
+  export INPUT_RELEASE_NOTES_FILE
+  # shellcheck source=../../src/extract_release_notes.sh
+  source "$PROFILE_SCRIPT"
 
-    run extract_release_notes
+  run extract_release_notes
 
-    assert_success
-    assert_output --partial "$EXPECTED_OUTPUT_1"
-    diff "$INPUT_RELEASE_NOTES_FILE" <(echo -n "$EXPECTED_RELEASE_NOTES_FILE_1")
-    assert_success
+  assert_success
+  assert_output --partial "$EXPECTED_OUTPUT_1"
+  diff "$INPUT_RELEASE_NOTES_FILE" <(echo -n "$EXPECTED_RELEASE_NOTES_FILE_1")
+  assert_success
 
-    unset INPUT_CHANGELOG_FILE
-    unset INPUT_RELEASE_NOTES_FILE
+  unset INPUT_CHANGELOG_FILE
+  unset INPUT_RELEASE_NOTES_FILE
 }
 
 @test "extract_release_notes should create release_notes_file correctly, when changelog contains one release" {
-    # shellcheck disable=SC2031,SC2030
-    export INPUT_CHANGELOG_FILE="$TEST_CHANGELOG_FILE_2"
-    INPUT_RELEASE_NOTES_FILE="$(mktemp)"
-    export INPUT_RELEASE_NOTES_FILE
-    # shellcheck source=../../src/extract_release_notes.sh
-    source "$PROFILE_SCRIPT"
+  # shellcheck disable=SC2031,SC2030
+  export INPUT_CHANGELOG_FILE="$TEST_CHANGELOG_FILE_2"
+  INPUT_RELEASE_NOTES_FILE="$(mktemp)"
+  export INPUT_RELEASE_NOTES_FILE
+  # shellcheck source=../../src/extract_release_notes.sh
+  source "$PROFILE_SCRIPT"
 
-    run extract_release_notes
+  run extract_release_notes
 
-    assert_success
-    assert_output --partial "$EXPECTED_OUTPUT_2"
-    diff "$INPUT_RELEASE_NOTES_FILE" <(echo -n "$EXPECTED_RELEASE_NOTES_FILE_2")
-    assert_success
+  assert_success
+  assert_output --partial "$EXPECTED_OUTPUT_2"
+  diff "$INPUT_RELEASE_NOTES_FILE" <(echo -n "$EXPECTED_RELEASE_NOTES_FILE_2")
+  assert_success
 
-    unset INPUT_CHANGELOG_FILE
-    unset INPUT_RELEASE_NOTES_FILE
+  unset INPUT_CHANGELOG_FILE
+  unset INPUT_RELEASE_NOTES_FILE
 }
 
 @test "extract_release_notes should create release_notes_file correctly, when changelog contains one minimal release" {
-    # shellcheck disable=SC2031,SC2030
-    export INPUT_CHANGELOG_FILE="$TEST_CHANGELOG_FILE_3"
-    INPUT_RELEASE_NOTES_FILE="$(mktemp)"
-    export INPUT_RELEASE_NOTES_FILE
-    # shellcheck source=../../src/extract_release_notes.sh
-    source "$PROFILE_SCRIPT"
+  # shellcheck disable=SC2031,SC2030
+  export INPUT_CHANGELOG_FILE="$TEST_CHANGELOG_FILE_3"
+  INPUT_RELEASE_NOTES_FILE="$(mktemp)"
+  export INPUT_RELEASE_NOTES_FILE
+  # shellcheck source=../../src/extract_release_notes.sh
+  source "$PROFILE_SCRIPT"
 
-    run extract_release_notes
+  run extract_release_notes
 
-    assert_success
-    assert_output --partial "$EXPECTED_OUTPUT_3"
-    diff "$INPUT_RELEASE_NOTES_FILE" <(echo -n "$EXPECTED_RELEASE_NOTES_FILE_3")
-    assert_success
+  assert_success
+  assert_output --partial "$EXPECTED_OUTPUT_3"
+  diff "$INPUT_RELEASE_NOTES_FILE" <(echo -n "$EXPECTED_RELEASE_NOTES_FILE_3")
+  assert_success
 
-    unset INPUT_CHANGELOG_FILE
-    unset INPUT_RELEASE_NOTES_FILE
+  unset INPUT_CHANGELOG_FILE
+  unset INPUT_RELEASE_NOTES_FILE
 }
