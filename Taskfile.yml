@@ -53,3 +53,9 @@ tasks:
     cmds:
     - golangci-lint run --out-format colored-line-number --tests --print-resources-usage --config build/ci/.golangci.yml
     silent: true
+
+  container-structure-test:
+    desc: Run container structure tests
+    cmds:
+    - docker build --tag ffurrer/extract-release-notes-action:latest .
+    - container-structure-test test --image ffurrer/extract-release-notes-action:latest --config test/container_structure_test.yml
