@@ -1,0 +1,21 @@
+# SPDX-License-Identifier: MIT
+name: yamllint
+
+on:
+  push:
+    branches:
+    - master
+    - feature/**
+    paths:
+    - '**.ya?ml'
+
+jobs:
+  yamllint:
+    runs-on: ubuntu-18.04
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: yamllint
+      uses: docker://ffurrer/yamllint:latest
+      with:
+        args: '--config-file build/ci/.yamllint.yml --format auto --strict .'

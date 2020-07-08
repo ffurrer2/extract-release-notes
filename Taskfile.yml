@@ -15,12 +15,41 @@ tasks:
     - docker build --tag ffurrer/extract-release-notes-action:latest .
     - docker run -it --rm --volume "$(pwd):/workdir" --workdir /workdir --env INPUT_CHANGELOG_FILE --env INPUT_RELEASE_NOTES_FILE ffurrer/extract-release-notes-action:latest
 
+  lint:
+    desc: Run all linters
+    cmds:
+    - task: shellcheck
+    - task: yamllint
+    - task: hadolint
+    - task: markdownlint
+    silent: true
+
   shellcheck:
     desc: Lint shell scripts
     cmds:
     - shellcheck --check-sourced --color=auto --format=tty --enable=all --source-path=./ --shell=bash --severity=style src/extract_release_notes.sh
+    silent: true
 
   yamllint:
     desc: Lint YAML files
     cmds:
-    - yamllint --format auto --strict .
+    - yamllint --config-file build/ci/.yamllint.yml --format auto --strict .
+    silent: true
+
+  hadolint:
+    desc: Lint Dockerfiles
+    cmds:
+    - hadolint --format tty Dockerfile
+    silent: true
+
+  markdownlint:
+    desc: Lint Markdown files
+    cmds:
+    - docker run -it --rm --volume "$(pwd):/work" tmknom/markdownlint:latest --config build/ci/.markdownlint.yml .
+    silent: true
+
+  golangci-lint:
+    desc: Lint Go code
+    cmds:
+    - golangci-lint run --out-format colored-line-number --tests --print-resources-usage --config build/ci/.golangci.yml
+    silent: true

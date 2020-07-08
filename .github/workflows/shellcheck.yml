@@ -1,0 +1,23 @@
+# SPDX-License-Identifier: MIT
+name: shellcheck
+
+on:
+  push:
+    branches:
+    - master
+    - feature/**
+    paths:
+    - '**.sh'
+    - '**/shellcheck.yml'
+
+jobs:
+  shellcheck:
+    runs-on: ubuntu-18.04
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: shellcheck
+      uses: docker://koalaman/shellcheck:latest
+      with:
+        entrypoint: /bin/shellcheck
+        args: '--check-sourced --color=auto --format=tty --enable=all --source-path=./ --shell=bash --severity=style src/extract_release_notes.sh'

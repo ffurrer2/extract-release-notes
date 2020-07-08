@@ -5,31 +5,24 @@ on:
   push:
     branches:
     - master
-    - feature/*
+    - feature/**
     paths-ignore:
     - '**.md'
+    - '.gitignore'
 
 jobs:
-  shellcheck:
+  container-structure-test:
     runs-on: ubuntu-18.04
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-    - name: Shellcheck
-      uses: docker://koalaman/shellcheck:latest
+    - name: Build Docker image
+      run: |
+        docker build --tag ffurrer/extract-release-notes-action:latest .
+    - name: Container structure test
+      uses: docker://gcr.io/gcp-runtimes/container-structure-test:latest
       with:
-        entrypoint: /bin/shellcheck
-        args: '--check-sourced --color=auto --format=tty --enable=all --shell=bash --severity=style src/extract_release_notes.sh'
-
-  yamllint:
-    runs-on: ubuntu-18.04
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: yamllint
-      uses: docker://ffurrer/yamllint:latest
-      with:
-        args: '--format auto --strict .'
+        args: 'test --image ffurrer/extract-release-notes-action:latest --config test/container_structure_test.yml'
 
   bats-tests:
     runs-on: ubuntu-18.04
@@ -40,7 +33,6 @@ jobs:
       uses: ffurrer2/bats-action@v1
       with:
         main: gawk sed
-        community: docker-cli
         args: /github/workspace/test/bats
 
   self-test-1:

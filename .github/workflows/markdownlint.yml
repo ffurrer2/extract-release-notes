@@ -1,0 +1,23 @@
+# SPDX-License-Identifier: MIT
+name: markdownlint
+
+on:
+  push:
+    branches:
+    - master
+    - feature/**
+    paths:
+    - '**.md'
+    - '**/.?markdownlint.yml'
+
+jobs:
+  markdownlint:
+    runs-on: ubuntu-18.04
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: markdownlint
+      uses: nosborn/github-action-markdown-cli@v1.1.1
+      with:
+        files: .
+        config_file: build/ci/.markdownlint.yml
