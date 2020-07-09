@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: MIT
 version: '2'
 
 tasks:
@@ -46,12 +47,6 @@ tasks:
     desc: Lint Markdown files
     cmds:
     - docker run -it --rm --volume "$(pwd):/work" tmknom/markdownlint:latest --config build/ci/.markdownlint.yml .
-    silent: true
-
-  golangci-lint:
-    desc: Lint Go code
-    cmds:
-    - golangci-lint run --out-format colored-line-number --tests --print-resources-usage --config build/ci/.golangci.yml
     silent: true
 
   container-structure-test:
