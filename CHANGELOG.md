@@ -9,8 +9,6 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
-- CI workflow improved
-
 ### Deprecated
 
 ### Removed
@@ -19,21 +17,28 @@ All notable changes to this project will be documented in this file.
 
 ### Security
 
+## [1.3.0] - 2020-07-09
+
+### Changed
+
+* Immutability of Docker image ensured
+* Linter workflows refactored
+
 ## [1.2.0] - 2020-04-25
 
 ### Changed
 
-- Alpine base image updated
-- CI & release workflows improved
+* Alpine base image updated
+* CI & release workflows improved
 
 ## [1.1.0] - 2020-02-23
 
 ### Changed
 
-- Docker image size reduced
+* Docker image size reduced
 
 ## [1.0.0] - 2020-01-26
 
 ### Added
 
-- Initial release of the `extract-release-notes` Action
+* Initial release of the `extract-release-notes` Action
