@@ -10,7 +10,7 @@ on:
 
 jobs:
   intergration-test-1:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -25,7 +25,7 @@ jobs:
         test -n "$RELEASE_NOTES"
 
   intergration-test-2:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -38,7 +38,7 @@ jobs:
         test -f ./RELEASE_NOTES.md
 
   intergration-test-3:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -73,7 +73,7 @@ jobs:
         diff <(echo "$RELEASE_NOTES") <(echo "$expected_output")
 
   intergration-test-4:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -104,7 +104,7 @@ jobs:
         diff <(echo "$RELEASE_NOTES") <(echo "$expected_output")
 
   intergration-test-5:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -126,7 +126,7 @@ jobs:
         diff <(echo "$RELEASE_NOTES") <(echo "$expected_output")
 
   intergration-test-6:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
     - name: Checkout
       uses: actions/checkout@v2

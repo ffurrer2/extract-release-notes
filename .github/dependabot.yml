@@ -1,0 +1,12 @@
+# SPDX-License-Identifier: MIT
+version: 2
+
+updates:
+- package-ecosystem: 'github-actions'
+  directory: '/'
+  schedule:
+    interval: 'weekly'
+  assignees:
+  - 'ffurrer2'
+  open-pull-requests-limit: 42
+  rebase-strategy: 'auto'

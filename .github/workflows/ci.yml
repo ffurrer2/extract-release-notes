@@ -6,13 +6,14 @@ on:
     branches:
     - master
     - feature/**
+    - dependabot/**
     paths-ignore:
     - '**.md'
     - '.gitignore'
 
 jobs:
   container-structure-test:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -25,7 +26,7 @@ jobs:
         args: 'test --image ffurrer/extract-release-notes-action:latest --config test/container_structure_test.yml'
 
   bats-tests:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -36,7 +37,7 @@ jobs:
         args: /github/workspace/test/bats
 
   self-test-1:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -51,7 +52,7 @@ jobs:
         test -n "$RELEASE_NOTES"
 
   self-test-2:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -64,7 +65,7 @@ jobs:
         test -f ./RELEASE_NOTES.md
 
   self-test-3:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -99,7 +100,7 @@ jobs:
         diff <(echo "$RELEASE_NOTES") <(echo "$expected_output")
 
   self-test-4:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -130,7 +131,7 @@ jobs:
         diff <(echo "$RELEASE_NOTES") <(echo "$expected_output")
 
   self-test-5:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -152,7 +153,7 @@ jobs:
         diff <(echo "$RELEASE_NOTES") <(echo "$expected_output")
 
   self-test-6:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
     - name: Checkout
       uses: actions/checkout@v2

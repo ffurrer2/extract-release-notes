@@ -17,3 +17,6 @@ rules:
   quoted-strings:
     quote-type: single
     required: false
+  braces:
+    min-spaces-inside: 1
+    max-spaces-inside: 1

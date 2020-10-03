@@ -6,13 +6,15 @@ on:
     branches:
     - master
     - feature/**
+    - dependabot/**
     paths:
     - '**.md'
-    - '**/.?markdownlint.yml'
+    - '.github/linters/.markdown-lint.yml'
+    - '.github/workflows/markdownlint.yml'
 
 jobs:
   markdownlint:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -20,4 +22,4 @@ jobs:
       uses: nosborn/github-action-markdown-cli@v1.1.1
       with:
         files: .
-        config_file: build/ci/.markdownlint.yml
+        config_file: .github/linters/.markdown-lint.yml

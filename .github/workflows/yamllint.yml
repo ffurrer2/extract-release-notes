@@ -6,16 +6,18 @@ on:
     branches:
     - master
     - feature/**
+    - dependabot/**
     paths:
     - '**.ya?ml'
 
 jobs:
   yamllint:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
     - name: Checkout
       uses: actions/checkout@v2
     - name: yamllint
       uses: docker://ffurrer/yamllint:latest
       with:
-        args: '--config-file build/ci/.yamllint.yml --format auto --strict .'
+        entrypoint: /usr/bin/yamllint
+        args: '--config-file .github/linters/.yaml-lint.yml --format github --strict .'
