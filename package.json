@@ -1,0 +1,25 @@
+{
+  "name": "extract-release-notes",
+  "version": "1.4.0",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "ncc build src/index.js --license LICENSES.txt",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ffurrer2/extract-release-notes.git"
+  },
+  "author": "Felix Furrer",
+  "license": "MIT",
+  "private": true,
+  "bugs": {
+    "url": "https://github.com/ffurrer2/extract-release-notes/issues"
+  },
+  "homepage": "https://github.com/ffurrer2/extract-release-notes#readme",
+  "dependencies": {
+    "@actions/core": "^1.2.6",
+    "@actions/github": "^4.0.0",
+    "esrever": "^0.2.0"
+  }
+}

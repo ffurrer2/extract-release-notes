@@ -18,7 +18,7 @@ This GitHub Action extracts release notes from a [Keep a Changelog](https://keep
 
 | Input                             | Description                                                     |
 | --------------------------------- | --------------------------------------------------------------- |
-| `changelog_file` _(optional)_     | The input path of the changelog file. Default: `./CHANGELOG.md` |
+| `changelog_file` _(optional)_     | The input path of the changelog file. Default: `CHANGELOG.md` |
 | `release_notes_file` _(optional)_ | The output path of the (optional) release notes file.           |
 
 ### Outputs
@@ -47,7 +47,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Extract release notes
-        id: extract_release_notes
+        id: extract-release-notes
         uses: ffurrer2/extract-release-notes@v1
       - name: Create release
         uses: actions/create-release@v1
@@ -58,10 +58,10 @@ jobs:
           release_name: ${{ github.ref }}
           draft: false
           prerelease: false
-          body: ${{ steps.extract_release_notes.outputs.release_notes }}
+          body: ${{ steps.extract-release-notes.outputs.release_notes }}
 ```
 
-This will extract the content between the second and third H2 header from the `CHANGELOG.md` file, store this content in the output variable `release_notes` and create a [release](https://help.github.com/en/articles/creating-releases) using the official [create-release](https://github.com/actions/create-release) Action.
+This will extract the content between the second and third H2 header from the `CHANGELOG.md` file, store this content in the output variable `release_notes` and create a [release](https://help.github.com/en/articles/creating-releases) using the official [create-release](https://github.com/actions/create-release) action.
 
 This uses the `GITHUB_TOKEN` provided by the [virtual environment](https://help.github.com/en/github/automating-your-workflow-with-github-actions/virtual-environments-for-github-actions#github_token-secret), so no new token is needed.
 
@@ -77,10 +77,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Extract release notes
-        id: extract_release_notes
+        id: extract-release-notes
         uses: ffurrer2/extract-release-notes@v1
         with:
-          changelog_file: ./MY_CHANGELOG.md
+          changelog_file: MY_CHANGELOG.md
 ```
 
 ### Create a release notes file
@@ -95,7 +95,7 @@ jobs:
       - name: Extract release notes
         uses: ffurrer2/extract-release-notes@v1
         with:
-          release_notes_file: ./RELEASE_NOTES.md
+          release_notes_file: RELEASE_NOTES.md
 ```
 
 ## License

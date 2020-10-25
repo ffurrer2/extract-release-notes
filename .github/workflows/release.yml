@@ -13,7 +13,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
     - name: Extract release notes
-      id: extract_release_notes
+      id: extract-release-notes
       uses: ffurrer2/extract-release-notes@v1
     - name: Create release
       uses: actions/create-release@v1
@@ -24,4 +24,4 @@ jobs:
         release_name: ${{ github.ref }}
         draft: true
         prerelease: false
-        body: ${{ steps.extract_release_notes.outputs.release_notes }}
+        body: ${{ steps.extract-release-notes.outputs.release_notes }}

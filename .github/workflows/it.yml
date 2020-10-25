@@ -7,49 +7,63 @@ on:
     - master
     paths-ignore:
     - '**.md'
+  schedule:
+  - cron: '0 0 * * 0'
 
 jobs:
   intergration-test-1:
-    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        os: [ ubuntu-20.04, macos-11.0, windows-2019 ]
+    runs-on: ${{ matrix.os }}
     steps:
     - name: Checkout
       uses: actions/checkout@v2
     - name: Self test
-      id: extract_release_notes
+      id: extract-release-notes
       uses: ffurrer2/extract-release-notes@master
     - name: Assert release_notes is not empty
+      shell: bash
       env:
-        RELEASE_NOTES: ${{ steps.extract_release_notes.outputs.release_notes }}
+        RELEASE_NOTES: ${{ steps.extract-release-notes.outputs.release_notes }}
       run: |
         test -v RELEASE_NOTES
-        test -n "$RELEASE_NOTES"
+        test -n "${RELEASE_NOTES}"
 
   intergration-test-2:
-    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        os: [ ubuntu-20.04, macos-11.0, windows-2019 ]
+    runs-on: ${{ matrix.os }}
     steps:
     - name: Checkout
       uses: actions/checkout@v2
     - name: Self test
       uses: ffurrer2/extract-release-notes@master
       with:
-        release_notes_file: ./RELEASE_NOTES.md
+        release_notes_file: RELEASE_NOTES.md
     - name: Assert release_notes_file exist
+      shell: bash
       run: |
-        test -f ./RELEASE_NOTES.md
+        test -f RELEASE_NOTES.md
 
   intergration-test-3:
-    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        os: [ ubuntu-20.04, macos-11.0, windows-2019 ]
+    runs-on: ${{ matrix.os }}
     steps:
     - name: Checkout
       uses: actions/checkout@v2
     - name: Self test
-      id: extract_release_notes
+      id: extract-release-notes
       uses: ffurrer2/extract-release-notes@master
       with:
         changelog_file: test/testdata/CHANGELOG_1.md
     - name: Assert release_notes contains expected content
+      shell: bash
       env:
-        RELEASE_NOTES: ${{ steps.extract_release_notes.outputs.release_notes }}
+        RELEASE_NOTES: ${{ steps.extract-release-notes.outputs.release_notes }}
       run: |
         expected_output=$(cat <<-EOF
         ### Added
@@ -70,21 +84,25 @@ jobs:
         - At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
         EOF
         )
-        diff <(echo "$RELEASE_NOTES") <(echo "$expected_output")
+        diff <(echo "${RELEASE_NOTES}") <(echo "$expected_output")
 
   intergration-test-4:
-    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        os: [ ubuntu-20.04, macos-11.0, windows-2019 ]
+    runs-on: ${{ matrix.os }}
     steps:
     - name: Checkout
       uses: actions/checkout@v2
     - name: Self test
-      id: extract_release_notes
+      id: extract-release-notes
       uses: ffurrer2/extract-release-notes@master
       with:
         changelog_file: test/testdata/CHANGELOG_2.md
     - name: Assert release_notes contains expected content
+      shell: bash
       env:
-        RELEASE_NOTES: ${{ steps.extract_release_notes.outputs.release_notes }}
+        RELEASE_NOTES: ${{ steps.extract-release-notes.outputs.release_notes }}
       run: |
         readonly expected_output=$(cat <<-EOF
         ### Added
@@ -101,21 +119,25 @@ jobs:
         - Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
         EOF
         )
-        diff <(echo "$RELEASE_NOTES") <(echo "$expected_output")
+        diff <(echo "${RELEASE_NOTES}") <(echo "$expected_output")
 
   intergration-test-5:
-    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        os: [ ubuntu-20.04, macos-11.0, windows-2019 ]
+    runs-on: ${{ matrix.os }}
     steps:
     - name: Checkout
       uses: actions/checkout@v2
     - name: Self test
-      id: extract_release_notes
+      id: extract-release-notes
       uses: ffurrer2/extract-release-notes@master
       with:
         changelog_file: test/testdata/CHANGELOG_3.md
     - name: Assert release_notes contains expected content
+      shell: bash
       env:
-        RELEASE_NOTES: ${{ steps.extract_release_notes.outputs.release_notes }}
+        RELEASE_NOTES: ${{ steps.extract-release-notes.outputs.release_notes }}
       run: |
         readonly expected_output=$(cat <<-EOF
         ### Added
@@ -123,22 +145,26 @@ jobs:
         - Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
         EOF
         )
-        diff <(echo "$RELEASE_NOTES") <(echo "$expected_output")
+        diff <(echo "${RELEASE_NOTES}") <(echo "$expected_output")
 
   intergration-test-6:
-    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        os: [ ubuntu-20.04, macos-11.0, windows-2019 ]
+    runs-on: ${{ matrix.os }}
     steps:
     - name: Checkout
       uses: actions/checkout@v2
     - name: Self test
-      id: extract_release_notes
+      id: extract-release-notes
       uses: ffurrer2/extract-release-notes@master
       with:
         changelog_file: test/testdata/CHANGELOG_1.md
-        release_notes_file: ./RELEASE_NOTES.md
+        release_notes_file: RELEASE_NOTES.md
     - name: Assert release_notes_file contains expected content
+      shell: bash
       env:
-        RELEASE_NOTES: ${{ steps.extract_release_notes.outputs.release_notes }}
+        RELEASE_NOTES: ${{ steps.extract-release-notes.outputs.release_notes }}
       run: |
         expected_output=$(cat <<-EOF
         ### Added
@@ -159,4 +185,4 @@ jobs:
         - At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
         EOF
         )
-        diff <(cat ./RELEASE_NOTES.md) <(echo -n "$expected_output")
+        diff <(cat RELEASE_NOTES.md) <(echo -n "$expected_output")

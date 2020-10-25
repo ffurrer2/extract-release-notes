@@ -8,46 +8,53 @@ tasks:
     - task --list
     silent: true
 
-  test:
-    desc: Test action
-    env:
-      INPUT_CHANGELOG_FILE: './CHANGELOG.md'
-      INPUT_RELEASE_NOTES_FILE: 'RELEASE_NOTES.md'
+  clean:
+    desc: Clean build artifacts
     cmds:
-    - docker build --tag ffurrer/extract-release-notes-action:latest .
-    - docker run -it --rm --volume "$(pwd):/workdir" --workdir /workdir --env INPUT_CHANGELOG_FILE --env INPUT_RELEASE_NOTES_FILE ffurrer/extract-release-notes-action:latest
+    - rm -rf node_modules/
+    silent: true
 
-  container-structure-test:
-    desc: Run container structure tests
+  setup:
+    desc: Install ncc
     cmds:
-    - docker build --tag ffurrer/extract-release-notes-action:latest .
-    - container-structure-test test --image ffurrer/extract-release-notes-action:latest --config test/container_structure_test.yml
+    - npm install -g @vercel/ncc
+    silent: true
+
+  prepare:
+    desc: Download node modules
+    cmds:
+    - npm install
+    silent: true
+
+  build:
+    desc: Compile Node.js module
+    deps:
+    - task: prepare
+    cmds:
+    - npm run build
+    silent: true
+
+  git:tag:
+    desc: Create release tag
+    preconditions:
+    - sh: '{{if empty .GIT_TAG}}false{{end}}'
+      msg: 'Variable "GIT_TAG" is required (e.g. task git:tag GIT_TAG=0.0.0)'
+    cmds:
+    - git tag --annotate --message='release v{{.GIT_TAG}}' --sign {{.GIT_TAG}}
+    - git --no-pager tag -n
+    silent: true
 
   lint:
     desc: Run all linters
     cmds:
-    - task: hadolint
     - task: markdownlint
-    - task: shellcheck
     - task: yamllint
-    silent: true
-
-  hadolint:
-    desc: Lint Dockerfiles
-    cmds:
-    - hadolint --format tty Dockerfile
     silent: true
 
   markdownlint:
     desc: Lint Markdown files
     cmds:
-    - docker run -it --rm --volume "$(pwd):/work" tmknom/markdownlint:latest --config .github/linters/.markdown-lint.yml .
-    silent: true
-
-  shellcheck:
-    desc: Lint shell scripts
-    cmds:
-    - shellcheck --check-sourced --color=auto --format=tty --enable=all --source-path=./ --shell=bash --severity=style src/extract_release_notes.sh
+    - docker run -it --rm --volume "$(pwd):/work" tmknom/markdownlint:latest --config .github/linters/.markdown-lint.yml --ignore node_modules/ .
     silent: true
 
   yamllint:

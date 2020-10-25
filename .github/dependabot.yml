@@ -10,3 +10,12 @@ updates:
   - 'ffurrer2'
   open-pull-requests-limit: 42
   rebase-strategy: 'auto'
+
+- package-ecosystem: 'npm'
+  directory: '/'
+  schedule:
+    interval: 'weekly'
+  assignees:
+  - 'ffurrer2'
+  open-pull-requests-limit: 42
+  rebase-strategy: 'auto'

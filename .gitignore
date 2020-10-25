@@ -2,4 +2,5 @@
 .idea/
 .vscode/
 
+node_modules/
 RELEASE_NOTES.md

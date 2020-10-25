@@ -6,7 +6,7 @@ inputs:
   changelog_file:
     description: 'The input path of the changelog file.'
     required: false
-    default: './CHANGELOG.md'
+    default: 'CHANGELOG.md'
   release_notes_file:
     description: 'The output path of the (optional) release notes file.'
     required: false
@@ -14,5 +14,5 @@ outputs:
   release_notes:
     description: 'The escaped release notes.'
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: 'node12'
+  main: 'dist/index.js'

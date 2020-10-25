@@ -7,7 +7,11 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+* Compatibility for ubuntu-20.04, macos-11.0 and windows-2019 ensured
+
 ### Changed
+
+* Action reimplemented as JavaScript action
 
 ### Deprecated
 
@@ -41,4 +45,4 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
-* Initial release of the `extract-release-notes` Action
+* Initial release of the `extract-release-notes` action

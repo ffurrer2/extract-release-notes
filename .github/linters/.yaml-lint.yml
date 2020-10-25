@@ -20,3 +20,9 @@ rules:
   braces:
     min-spaces-inside: 1
     max-spaces-inside: 1
+  brackets:
+    min-spaces-inside: 1
+    max-spaces-inside: 1
+
+ignore: |
+  node_modules/
