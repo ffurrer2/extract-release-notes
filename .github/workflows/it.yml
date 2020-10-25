@@ -27,7 +27,6 @@ jobs:
       env:
         RELEASE_NOTES: ${{ steps.extract-release-notes.outputs.release_notes }}
       run: |
-        test -v RELEASE_NOTES
         test -n "${RELEASE_NOTES}"
 
   intergration-test-2:
