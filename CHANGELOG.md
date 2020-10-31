@@ -7,11 +7,7 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
-* Compatibility for ubuntu-20.04, macos-11.0 and windows-2019 ensured
-
 ### Changed
-
-* Action reimplemented as JavaScript action
 
 ### Deprecated
 
@@ -20,6 +16,16 @@ All notable changes to this project will be documented in this file.
 ### Fixed
 
 ### Security
+
+## [1.4.0] - 2020-11-01
+
+### Added
+
+* Compatibility for ubuntu-20.04, macos-11.0 and windows-2019 ensured
+
+### Changed
+
+* Action reimplemented as JavaScript action
 
 ## [1.3.0] - 2020-07-09
 
