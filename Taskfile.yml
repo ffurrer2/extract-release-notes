@@ -15,13 +15,13 @@ tasks:
     silent: true
 
   setup:
-    desc: Install ncc
+    desc: Setup ncc
     cmds:
-    - npm install -g @vercel/ncc
+    - npm install --global @vercel/ncc
     silent: true
 
   prepare:
-    desc: Download node modules
+    desc: Install packages
     cmds:
     - npm install
     silent: true
@@ -29,9 +29,11 @@ tasks:
   build:
     desc: Compile Node.js module
     deps:
+    - task: clean
     - task: prepare
     cmds:
     - npm run build
+    - task: licensed:status
     silent: true
 
   git:tag:
@@ -40,7 +42,7 @@ tasks:
     - sh: '{{if empty .GIT_TAG}}false{{end}}'
       msg: 'Variable "GIT_TAG" is required (e.g. task git:tag GIT_TAG=0.0.0)'
     cmds:
-    - git tag --annotate --message='release v{{.GIT_TAG}}' --sign {{.GIT_TAG}}
+    - git tag --annotate --message='release v{{.GIT_TAG}}' --sign v{{.GIT_TAG}}
     - git --no-pager tag -n
     silent: true
 
@@ -61,4 +63,43 @@ tasks:
     desc: Lint YAML files
     cmds:
     - yamllint --config-file .github/linters/.yaml-lint.yml --format auto --strict .
+    silent: true
+
+  licensed:list:
+    desc: List dependencies
+    cmds:
+    - licensed list
+    silent: true
+
+  licensed:status:
+    desc: Check licensed status
+    cmds:
+    - licensed status
+    silent: true
+
+  licensed:cache:
+    desc: Upate licensed cache
+    cmds:
+    - npm ci
+    - licensed cache --force
+    silent: true
+
+  licensed:notices:
+    desc: Generate NOTICE file
+    cmds:
+    - licensed notices
+    silent: true
+
+  version:
+    desc: Show versions
+    cmds:
+    - |
+      set -e
+      printf 'git:      %s\n' "$(git --version | cut -d ' ' -f 3)"
+      printf 'licensed: %s\n' "$(licensed version)"
+      printf 'ncc:      %s\n' "$(ncc version)"
+      printf 'node:     %s\n' "$(node --version | cut -c 2-)"
+      printf 'npm:      %s\n' "$(npm --version)"
+      printf 'task:     %s\n' "$(task --version | cut -d ' ' -f 3)"
+      printf 'yamllint: %s\n' "$(yamllint --version | cut -d ' ' -f 2)"
     silent: true

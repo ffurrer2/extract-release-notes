@@ -1,0 +1,35 @@
+# SPDX-License-Identifier: MIT
+name: Licensed
+
+on:
+  push:
+    branches:
+    - master
+    - feature/**
+    - dependabot/**
+    paths-ignore:
+    - '**.md'
+    - '.gitignore'
+
+jobs:
+  licensed:
+    runs-on: ubuntu-20.04
+    name: Check licenses
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Setup Licensed
+      uses: jonabc/setup-licensed@v1
+      with:
+        version: '2.x'
+        check-latest: true
+    - name: Setup Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12'
+    - name: Install packages
+      run: |
+        npm ci
+    - name: Check licensed status
+      run: |
+        licensed status

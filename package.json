@@ -3,7 +3,7 @@
   "version": "1.4.0",
   "main": "src/index.js",
   "scripts": {
-    "build": "ncc build src/index.js --license LICENSES.txt",
+    "build": "ncc build src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

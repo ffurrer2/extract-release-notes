@@ -7,6 +7,7 @@ on:
     - master
     paths-ignore:
     - '**.md'
+    - '.gitignore'
   schedule:
   - cron: '0 0 * * 0'
 
@@ -83,7 +84,7 @@ jobs:
         - At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
         EOF
         )
-        diff <(echo "${RELEASE_NOTES}") <(echo "$expected_output")
+        diff <(echo "${RELEASE_NOTES}") <(echo "${expected_output}")
 
   intergration-test-4:
     strategy:
@@ -118,7 +119,7 @@ jobs:
         - Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
         EOF
         )
-        diff <(echo "${RELEASE_NOTES}") <(echo "$expected_output")
+        diff <(echo "${RELEASE_NOTES}") <(echo "${expected_output}")
 
   intergration-test-5:
     strategy:
@@ -144,7 +145,7 @@ jobs:
         - Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
         EOF
         )
-        diff <(echo "${RELEASE_NOTES}") <(echo "$expected_output")
+        diff <(echo "${RELEASE_NOTES}") <(echo "${expected_output}")
 
   intergration-test-6:
     strategy:
@@ -184,4 +185,4 @@ jobs:
         - At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
         EOF
         )
-        diff <(cat RELEASE_NOTES.md) <(echo -n "$expected_output")
+        diff <(cat RELEASE_NOTES.md) <(echo -n "${expected_output}")

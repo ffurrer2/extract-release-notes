@@ -2,5 +2,6 @@
 .idea/
 .vscode/
 
-node_modules/
+NOTICE
 RELEASE_NOTES.md
+node_modules/
