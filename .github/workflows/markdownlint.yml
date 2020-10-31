@@ -9,8 +9,8 @@ on:
     - dependabot/**
     paths:
     - '**.md'
-    - '.github/linters/.markdown-lint.yml'
-    - '.github/workflows/markdownlint.yml'
+    - .github/linters/.markdown-lint.yml
+    - .github/workflows/markdownlint.yml
 
 jobs:
   markdownlint:
@@ -23,3 +23,4 @@ jobs:
       with:
         files: .
         config_file: .github/linters/.markdown-lint.yml
+        ignore_files: test/testdata/expected

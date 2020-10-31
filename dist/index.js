@@ -1,8 +1,8 @@
-module.exports =
+require('./sourcemap-register.js');module.exports =
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 165:
+/***/ 241:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -16,7 +16,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const os = __importStar(__webpack_require__(87));
-const utils_1 = __webpack_require__(798);
+const utils_1 = __webpack_require__(278);
 /**
  * Commands
  *
@@ -88,7 +88,7 @@ function escapeProperty(s) {
 
 /***/ }),
 
-/***/ 864:
+/***/ 186:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -110,9 +110,9 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const command_1 = __webpack_require__(165);
-const file_command_1 = __webpack_require__(526);
-const utils_1 = __webpack_require__(798);
+const command_1 = __webpack_require__(241);
+const file_command_1 = __webpack_require__(717);
+const utils_1 = __webpack_require__(278);
 const os = __importStar(__webpack_require__(87));
 const path = __importStar(__webpack_require__(622));
 /**
@@ -333,7 +333,7 @@ exports.getState = getState;
 
 /***/ }),
 
-/***/ 526:
+/***/ 717:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -351,7 +351,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const fs = __importStar(__webpack_require__(747));
 const os = __importStar(__webpack_require__(87));
-const utils_1 = __webpack_require__(798);
+const utils_1 = __webpack_require__(278);
 function issueCommand(command, message) {
     const filePath = process.env[`GITHUB_${command}`];
     if (!filePath) {
@@ -369,7 +369,7 @@ exports.issueCommand = issueCommand;
 
 /***/ }),
 
-/***/ 798:
+/***/ 278:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -395,7 +395,7 @@ exports.toCommandValue = toCommandValue;
 
 /***/ }),
 
-/***/ 214:
+/***/ 270:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* module decorator */ module = __webpack_require__.nmd(module);
@@ -475,14 +475,14 @@ exports.toCommandValue = toCommandValue;
 
 /***/ }),
 
-/***/ 994:
+/***/ 351:
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
 // SPDX-License-Identifier: MIT
-const core = __webpack_require__(864)
+const core = __webpack_require__(186)
 const fs = __webpack_require__(747)
 const readline = __webpack_require__(58)
-const esrever = __webpack_require__(214);
+const esrever = __webpack_require__(270);
 
 const encoding = 'utf8'
 const eol = '\n'
@@ -641,6 +641,7 @@ module.exports = require("readline");
 /******/ 	// module exports must be returned from runtime so entry inlining is disabled
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(994);
+/******/ 	return __webpack_require__(351);
 /******/ })()
 ;
+//# sourceMappingURL=index.js.map

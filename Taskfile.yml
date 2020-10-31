@@ -14,12 +14,6 @@ tasks:
     - rm -rf node_modules/
     silent: true
 
-  setup:
-    desc: Setup ncc
-    cmds:
-    - npm install --global @vercel/ncc
-    silent: true
-
   prepare:
     desc: Install packages
     cmds:
@@ -28,11 +22,21 @@ tasks:
 
   build:
     desc: Compile Node.js module
-    deps:
-    - task: clean
-    - task: prepare
     cmds:
+    - rm -rf dist/
+    - rm -rf package-lock.json
+    - task: prepare
     - npm run build
+    - git add dist/index.js package-lock.json
+    silent: true
+
+  build:release:
+    desc: Compile Node.js module
+    cmds:
+    - rm -rf dist/
+    - npm ci
+    - npm run build
+    - git add dist/*
     - task: licensed:status
     silent: true
 
@@ -56,7 +60,7 @@ tasks:
   markdownlint:
     desc: Lint Markdown files
     cmds:
-    - docker run -it --rm --volume "$(pwd):/work" tmknom/markdownlint:latest --config .github/linters/.markdown-lint.yml --ignore node_modules/ .
+    - docker run -it --rm --volume "$(pwd):/work" tmknom/markdownlint:latest --config .github/linters/.markdown-lint.yml --ignore node_modules --ignore test/testdata/expected .
     silent: true
 
   yamllint:

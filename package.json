@@ -3,13 +3,19 @@
   "version": "1.4.0",
   "main": "src/index.js",
   "scripts": {
-    "build": "ncc build src/index.js",
+    "lint": "eslint .",
+    "build": "ncc build src/index.js --source-map",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ffurrer2/extract-release-notes.git"
   },
+  "keywords": [
+    "GitHub",
+    "Actions",
+    "JavaScript"
+  ],
   "author": "Felix Furrer",
   "license": "MIT",
   "private": true,
@@ -21,5 +27,15 @@
     "@actions/core": "^1.2.6",
     "@actions/github": "^4.0.0",
     "esrever": "^0.2.0"
+  },
+  "devDependencies": {
+    "jest": "^26.6.1",
+    "@vercel/ncc": "^0.24.1",
+    "npm-check-updates": "^9.2.3",
+    "eslint": "^7.12.1",
+    "eslint-config-standard": "^16.0.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1"
   }
 }

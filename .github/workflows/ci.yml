@@ -9,10 +9,41 @@ on:
     - dependabot/**
     paths-ignore:
     - '**.md'
-    - '.gitignore'
+    - .gitignore
 
 jobs:
-  self-test-1:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Setup Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12'
+    - name: Install packages
+      run: |
+        npm ci
+    - name: Compile Node.js module
+      run: |
+        npm run build
+    - name: Verify no untracked files and unstaged changes
+      run: |
+        if [[ -n "$(git status --porcelain)" ]]; then
+            echo ----------------------------------------
+            echo git status
+            echo ----------------------------------------
+            git status
+            echo ----------------------------------------
+            echo git diff
+            echo ----------------------------------------
+            git diff
+            echo ----------------------------------------
+            echo "::error::Untracked files or unstaged changes detected!"
+            exit 1
+        fi
+
+  intergration-test-1:
     strategy:
       matrix:
         os: [ ubuntu-20.04, macos-11.0, windows-2019 ]
@@ -23,14 +54,14 @@ jobs:
     - name: Self test
       id: extract-release-notes
       uses: ./
-    - name: Assert release_notes is not empty
+    - name: Assert that release_notes output is not empty
       shell: bash
       env:
         RELEASE_NOTES: ${{ steps.extract-release-notes.outputs.release_notes }}
       run: |
         test -n "${RELEASE_NOTES}"
 
-  self-test-2:
+  intergration-test-2:
     strategy:
       matrix:
         os: [ ubuntu-20.04, macos-11.0, windows-2019 ]
@@ -42,12 +73,12 @@ jobs:
       uses: ./
       with:
         release_notes_file: RELEASE_NOTES.md
-    - name: Assert release-notes-file exist
+    - name: Assert that RELEASE_NOTES.md exists
       shell: bash
       run: |
         test -f RELEASE_NOTES.md
 
-  self-test-3:
+  intergration-test-3:
     strategy:
       matrix:
         os: [ ubuntu-20.04, macos-11.0, windows-2019 ]
@@ -60,33 +91,14 @@ jobs:
       uses: ./
       with:
         changelog_file: test/testdata/CHANGELOG_1.md
-    - name: Assert release_notes output contains expected content
+    - name: Assert that release_notes output contains expected content
       shell: bash
       env:
         RELEASE_NOTES: ${{ steps.extract-release-notes.outputs.release_notes }}
       run: |
-        expected_output=$(cat <<-EOF
-        ### Added
+        diff <(echo -n "${RELEASE_NOTES}") test/testdata/expected/RELEASE_NOTES_1.md
 
-        - Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        - At vero eos et accusam et justo duo dolores et ea rebum.
-        - Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-        - Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        - At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-
-        ### Changed
-
-        - At vero eos et accusam et justo duo dolores et ea rebum.
-        - Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-
-        ### Removed
-
-        - At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-        EOF
-        )
-        diff <(echo "${RELEASE_NOTES}") <(echo "$expected_output")
-
-  self-test-4:
+  intergration-test-4:
     strategy:
       matrix:
         os: [ ubuntu-20.04, macos-11.0, windows-2019 ]
@@ -99,30 +111,18 @@ jobs:
       uses: ./
       with:
         changelog_file: test/testdata/CHANGELOG_2.md
-    - name: Assert release_notes output contains expected content
+    - name: Assert that release_notes output contains expected content
       shell: bash
       env:
         RELEASE_NOTES: ${{ steps.extract-release-notes.outputs.release_notes }}
       run: |
-        readonly expected_output=$(cat <<-EOF
-        ### Added
+        diff <(echo -n "${RELEASE_NOTES}") test/testdata/expected/RELEASE_NOTES_2.md
 
-        - Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        - At vero eos et accusam et justo duo dolores et ea rebum.
-        - Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-        - Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        - At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-
-        ### Changed
-
-        - At vero eos et accusam et justo duo dolores et ea rebum.
-        - Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-        EOF
-        )
-        diff <(echo "${RELEASE_NOTES}") <(echo "$expected_output")
-
-  self-test-5:
-    runs-on: ubuntu-20.04
+  intergration-test-5:
+    strategy:
+      matrix:
+        os: [ ubuntu-20.04, macos-11.0, windows-2019 ]
+    runs-on: ${{ matrix.os }}
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -131,20 +131,14 @@ jobs:
       uses: ./
       with:
         changelog_file: test/testdata/CHANGELOG_3.md
-    - name: Assert release_notes output contains expected content
+    - name: Assert that release_notes output contains expected content
       shell: bash
       env:
         RELEASE_NOTES: ${{ steps.extract-release-notes.outputs.release_notes }}
       run: |
-        readonly expected_output=$(cat <<-EOF
-        ### Added
+        diff <(echo -n "${RELEASE_NOTES}") test/testdata/expected/RELEASE_NOTES_3.md
 
-        - Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        EOF
-        )
-        diff <(echo "${RELEASE_NOTES}") <(echo "$expected_output")
-
-  self-test-6:
+  intergration-test-6:
     strategy:
       matrix:
         os: [ ubuntu-20.04, macos-11.0, windows-2019 ]
@@ -158,28 +152,9 @@ jobs:
       with:
         changelog_file: test/testdata/CHANGELOG_1.md
         release_notes_file: RELEASE_NOTES.md
-    - name: Assert release-notes-file contains expected content
+    - name: Assert that RELEASE_NOTES.md contains expected content
       shell: bash
       env:
         RELEASE_NOTES: ${{ steps.extract-release-notes.outputs.release_notes }}
       run: |
-        expected_output=$(cat <<-EOF
-        ### Added
-
-        - Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        - At vero eos et accusam et justo duo dolores et ea rebum.
-        - Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-        - Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        - At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-
-        ### Changed
-
-        - At vero eos et accusam et justo duo dolores et ea rebum.
-        - Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-
-        ### Removed
-
-        - At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-        EOF
-        )
-        diff  <(cat RELEASE_NOTES.md) <(echo -n "$expected_output")
+        diff RELEASE_NOTES.md test/testdata/expected/RELEASE_NOTES_1.md

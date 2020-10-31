@@ -7,9 +7,9 @@ on:
     - master
     - feature/**
     - dependabot/**
-    paths-ignore:
-    - '**.md'
-    - '.gitignore'
+    paths:
+    - package.json
+    - package-lock.json
 
 jobs:
   licensed:
