@@ -10,6 +10,7 @@ on:
     paths:
     - package.json
     - package-lock.json
+    - .github/workflows/licensed.yml
 
 jobs:
   licensed:
@@ -22,11 +23,16 @@ jobs:
       uses: jonabc/setup-licensed@v1
       with:
         version: '2.x'
-        check-latest: true
     - name: Setup Node.js
       uses: actions/setup-node@v2.1.2
       with:
         node-version: '12'
+    - uses: actions/cache@v2
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
     - name: Install packages
       run: |
         npm ci

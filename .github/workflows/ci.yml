@@ -4,15 +4,14 @@ name: CI
 on:
   push:
     branches:
-    - master
-    - feature/**
     - dependabot/**
+    - feature/**
     paths-ignore:
     - '**.md'
     - .gitignore
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-20.04
     steps:
     - name: Checkout
@@ -21,55 +20,31 @@ jobs:
       uses: actions/setup-node@v2.1.2
       with:
         node-version: '12'
+    - uses: actions/cache@v2
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
     - name: Install packages
       run: |
         npm ci
     - name: Compile Node.js module
       run: |
         npm run build
-    - name: Verify no untracked files and unstaged changes
-      run: |
-        if [[ -n "$(git status --porcelain)" ]]; then
-            echo ----------------------------------------
-            echo git status
-            echo ----------------------------------------
-            git status
-            echo ----------------------------------------
-            echo git diff
-            echo ----------------------------------------
-            git diff
-            echo ----------------------------------------
-            echo "::error::Untracked files or unstaged changes detected!"
-            exit 1
-        fi
 
-  intergration-test-1:
-    strategy:
-      matrix:
-        os: [ 'ubuntu-20.04' ]
-    runs-on: ${{ matrix.os }}
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: Self test
-      id: extract-release-notes
+    - name: Run action
+      id: extract-release-notes-1
       uses: ./
     - name: Assert that release_notes output is not empty
       shell: bash
       env:
-        RELEASE_NOTES: ${{ steps.extract-release-notes.outputs.release_notes }}
+        RELEASE_NOTES: ${{ steps.extract-release-notes-1.outputs.release_notes }}
       run: |
         test -n "${RELEASE_NOTES}"
 
-  intergration-test-2:
-    strategy:
-      matrix:
-        os: [ 'ubuntu-20.04' ]
-    runs-on: ${{ matrix.os }}
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: Self test
+    - name: Run action
+      id: extract-release-notes-2
       uses: ./
       with:
         release_notes_file: RELEASE_NOTES.md
@@ -78,76 +53,44 @@ jobs:
       run: |
         test -f RELEASE_NOTES.md
 
-  intergration-test-3:
-    strategy:
-      matrix:
-        os: [ 'ubuntu-20.04', 'macos-11.0', 'windows-2019' ]
-    runs-on: ${{ matrix.os }}
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: Self test
-      id: extract-release-notes
+    - name: Run action
+      id: extract-release-notes-3
       uses: ./
       with:
         changelog_file: test/testdata/CHANGELOG_1.md
     - name: Assert that release_notes output contains expected content
       shell: bash
       env:
-        RELEASE_NOTES: ${{ steps.extract-release-notes.outputs.release_notes }}
+        RELEASE_NOTES: ${{ steps.extract-release-notes-3.outputs.release_notes }}
       run: |
         diff <(echo -n "${RELEASE_NOTES}") test/testdata/expected/RELEASE_NOTES_1.md
 
-  intergration-test-4:
-    strategy:
-      matrix:
-        os: [ 'ubuntu-20.04' ]
-    runs-on: ${{ matrix.os }}
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: Self test
-      id: extract-release-notes
+    - name: Run action
+      id: extract-release-notes-4
       uses: ./
       with:
         changelog_file: test/testdata/CHANGELOG_2.md
     - name: Assert that release_notes output contains expected content
       shell: bash
       env:
-        RELEASE_NOTES: ${{ steps.extract-release-notes.outputs.release_notes }}
+        RELEASE_NOTES: ${{ steps.extract-release-notes-4.outputs.release_notes }}
       run: |
         diff <(echo -n "${RELEASE_NOTES}") test/testdata/expected/RELEASE_NOTES_2.md
 
-  intergration-test-5:
-    strategy:
-      matrix:
-        os: [ 'ubuntu-20.04' ]
-    runs-on: ${{ matrix.os }}
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: Self test
-      id: extract-release-notes
+    - name: Run action
+      id: extract-release-notes-5
       uses: ./
       with:
         changelog_file: test/testdata/CHANGELOG_3.md
     - name: Assert that release_notes output contains expected content
       shell: bash
       env:
-        RELEASE_NOTES: ${{ steps.extract-release-notes.outputs.release_notes }}
+        RELEASE_NOTES: ${{ steps.extract-release-notes-5.outputs.release_notes }}
       run: |
         diff <(echo -n "${RELEASE_NOTES}") test/testdata/expected/RELEASE_NOTES_3.md
 
-  intergration-test-6:
-    strategy:
-      matrix:
-        os: [ 'ubuntu-20.04', 'macos-11.0', 'windows-2019' ]
-    runs-on: ${{ matrix.os }}
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: Self test
-      id: extract-release-notes
+    - name: Run action
+      id: extract-release-notes-6
       uses: ./
       with:
         changelog_file: test/testdata/CHANGELOG_1.md
@@ -155,6 +98,32 @@ jobs:
     - name: Assert that RELEASE_NOTES.md contains expected content
       shell: bash
       env:
-        RELEASE_NOTES: ${{ steps.extract-release-notes.outputs.release_notes }}
+        RELEASE_NOTES: ${{ steps.extract-release-notes-6.outputs.release_notes }}
       run: |
         diff RELEASE_NOTES.md test/testdata/expected/RELEASE_NOTES_1.md
+
+    - name: Run action
+      id: extract-release-notes-7
+      uses: ./
+      with:
+        changelog_file: test/testdata/CHANGELOG_2.md
+        release_notes_file: RELEASE_NOTES.md
+    - name: Assert that RELEASE_NOTES.md contains expected content
+      shell: bash
+      env:
+        RELEASE_NOTES: ${{ steps.extract-release-notes-7.outputs.release_notes }}
+      run: |
+        diff RELEASE_NOTES.md test/testdata/expected/RELEASE_NOTES_2.md
+
+    - name: Run action
+      id: extract-release-notes-8
+      uses: ./
+      with:
+        changelog_file: test/testdata/CHANGELOG_3.md
+        release_notes_file: RELEASE_NOTES.md
+    - name: Assert that RELEASE_NOTES.md contains expected content
+      shell: bash
+      env:
+        RELEASE_NOTES: ${{ steps.extract-release-notes-8.outputs.release_notes }}
+      run: |
+        diff RELEASE_NOTES.md test/testdata/expected/RELEASE_NOTES_3.md

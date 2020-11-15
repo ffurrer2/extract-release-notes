@@ -1,0 +1,126 @@
+# SPDX-License-Identifier: MIT
+name: Test
+
+on:
+  push:
+    branches:
+    - master
+    paths-ignore:
+    - '**.md'
+    - .gitignore
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Setup Node.js
+      uses: actions/setup-node@v2.1.2
+      with:
+        node-version: '12'
+    - uses: actions/cache@v2
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+    - name: Install packages
+      run: |
+        npm ci
+    - name: Compile Node.js module
+      run: |
+        npm run build
+    - name: Verify no untracked files and unstaged changes
+      run: |
+        if [[ -n "$(git status --porcelain)" ]]; then
+            echo ----------------------------------------
+            echo git status
+            echo ----------------------------------------
+            git status
+            echo ----------------------------------------
+            echo git diff
+            echo ----------------------------------------
+            git diff
+            echo ----------------------------------------
+            echo "::error::Untracked files or unstaged changes detected!"
+            exit 1
+        fi
+
+  intergration-test-1:
+    strategy:
+      matrix:
+        os: [ 'ubuntu-20.04', 'macos-11.0', 'windows-2019' ]
+    runs-on: ${{ matrix.os }}
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Run action
+      id: extract-release-notes
+      uses: ./
+    - name: Assert that release_notes output is not empty
+      shell: bash
+      env:
+        RELEASE_NOTES: ${{ steps.extract-release-notes.outputs.release_notes }}
+      run: |
+        test -n "${RELEASE_NOTES}"
+
+  intergration-test-2:
+    strategy:
+      matrix:
+        os: [ 'ubuntu-20.04', 'macos-11.0', 'windows-2019' ]
+    runs-on: ${{ matrix.os }}
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Run action
+      uses: ./
+      with:
+        release_notes_file: RELEASE_NOTES.md
+    - name: Assert that RELEASE_NOTES.md exists
+      shell: bash
+      run: |
+        test -f RELEASE_NOTES.md
+
+  intergration-test-3:
+    strategy:
+      matrix:
+        os: [ 'ubuntu-20.04', 'macos-11.0', 'windows-2019' ]
+        test: [ 1, 2, 3 ]
+    runs-on: ${{ matrix.os }}
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Run action
+      id: extract-release-notes
+      uses: ./
+      with:
+        changelog_file: test/testdata/CHANGELOG_${{ matrix.test }}.md
+    - name: Assert that release_notes output contains expected content
+      shell: bash
+      env:
+        RELEASE_NOTES: ${{ steps.extract-release-notes.outputs.release_notes }}
+      run: |
+        diff <(echo -n "${RELEASE_NOTES}") test/testdata/expected/RELEASE_NOTES_${{ matrix.test }}.md
+
+  intergration-test-4:
+    strategy:
+      matrix:
+        os: [ 'ubuntu-20.04', 'macos-11.0', 'windows-2019' ]
+        test: [ 1, 2, 3 ]
+    runs-on: ${{ matrix.os }}
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Run action
+      id: extract-release-notes
+      uses: ./
+      with:
+        changelog_file: test/testdata/CHANGELOG_${{ matrix.test }}.md
+        release_notes_file: RELEASE_NOTES.md
+    - name: Assert that RELEASE_NOTES.md contains expected content
+      shell: bash
+      env:
+        RELEASE_NOTES: ${{ steps.extract-release-notes.outputs.release_notes }}
+      run: |
+        diff RELEASE_NOTES.md test/testdata/expected/RELEASE_NOTES_${{ matrix.test }}.md
