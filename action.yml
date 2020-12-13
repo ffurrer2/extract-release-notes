@@ -2,6 +2,9 @@
 name: 'Extract Release Notes'
 author: 'Felix Furrer'
 description: 'Extract release notes from a "Keep a Changelog" changelog file.'
+branding:
+  icon: 'align-left'
+  color: 'white'
 inputs:
   changelog_file:
     description: 'The input path of the changelog file.'
