@@ -2,7 +2,7 @@
 # Extract Release Notes
 
 [![CI](https://github.com/ffurrer2/extract-release-notes/workflows/CI/badge.svg)](https://github.com/ffurrer2/extract-release-notes/actions?query=workflow%3ACI)
-[![MIT License](https://img.shields.io/github/license/ffurrer2/extract-release-notes)](https://github.com/ffurrer2/extract-release-notes/blob/master/LICENSE)
+[![MIT License](https://img.shields.io/github/license/ffurrer2/extract-release-notes)](https://github.com/ffurrer2/extract-release-notes/blob/main/LICENSE)
 [![GitHub Release](https://img.shields.io/github/v/release/ffurrer2/extract-release-notes?sort=semver)](https://github.com/ffurrer2/extract-release-notes/releases/latest)
 
 This GitHub Action extracts release notes from a [Keep a Changelog](https://keepachangelog.com/) formatted changelog file.
