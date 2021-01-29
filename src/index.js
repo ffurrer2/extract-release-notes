@@ -31,21 +31,21 @@ async function extractReleaseNotes(changelogFile) {
         input: fileStream
     })
     const lines = []
-    let inside_h2 = false
+    let inside_release = false
     for await (const line of rl) {
-        const line_is_h2 = !!line.match("^## \\[[0-9]")
-        if (inside_h2) {
-            if (line_is_h2) {
-                core.debug(`next h2 found: '${line}'`)
+        const line_is_version = !!line.match("^#+ \\[[0-9]")
+        if (inside_release) {
+            if (line_is_version) {
+                core.debug(`next version found: '${line}'`)
                 break
             } else {
                 lines.push(line)
                 core.debug(`add line: '${line}'`)
             }
         } else {
-            if (line_is_h2) {
-                inside_h2 = true
-                core.debug(`h2 found: '${line}'`)
+            if (line_is_version) {
+                inside_release = true
+                core.debug(`version found: '${line}'`)
             } else {
                 core.debug(`skip line: '${line}'`)
             }
