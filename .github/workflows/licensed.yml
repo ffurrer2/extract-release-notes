@@ -27,7 +27,7 @@ jobs:
       uses: actions/setup-node@v2.1.4
       with:
         node-version: '12'
-    - uses: actions/cache@v2
+    - uses: actions/cache@v2.1.4
       with:
         path: ~/.npm
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
