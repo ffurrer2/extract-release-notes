@@ -17,6 +17,16 @@ All notable changes to this project will be documented in this file.
 
 ### Security
 
+## [1.5.0] - 2021-02-10
+
+### Added
+
+* Added support for the [Standard Version](https://github.com/conventional-changelog/standard-version) changelog format. Thanks to [Valandur](https://github.com/Valandur) for his contribution.
+
+### Changed
+
+* Updated various dependencies.
+
 ## [1.4.0] - 2020-11-01
 
 ### Added
