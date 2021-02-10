@@ -2,6 +2,15 @@
 # https://taskfile.dev
 version: '3'
 
+includes:
+  git: ./tasks/GitTasks.yml
+  licensed: ./tasks/LicensedTasks.yml
+  lint: ./tasks/LinterTasks.yml
+  npm: ./tasks/NpmTasks.yml
+
+vars:
+  PROJECT_NAME: extract-release-notes
+
 tasks:
   default:
     cmds:
@@ -9,89 +18,29 @@ tasks:
     silent: true
 
   clean:
-    desc: Clean build artifacts
+    desc: Delete build artifacts
     cmds:
-    - rm -rf node_modules/
-    silent: true
-
-  prepare:
-    desc: Install packages
-    cmds:
-    - npm install
+    - task: npm:clean
     silent: true
 
   build:
-    desc: Compile Node.js module
+    desc: Build {{.PROJECT_NAME}}
     cmds:
-    - rm -rf dist/
-    - rm -rf package-lock.json
-    - task: prepare
-    - npm run build
-    - git add dist/index.js package-lock.json
+    - task: npm:build
     silent: true
 
-  build:release:
-    desc: Compile Node.js module
+  release:
+    desc: Build release
     cmds:
-    - rm -rf dist/
-    - npm ci
-    - npm run build
-    - git add dist/*
+    - task: npm:release
     - task: licensed:status
-    silent: true
-
-  git:tag:
-    desc: Create release tag
-    preconditions:
-    - sh: '{{if empty .GIT_TAG}}false{{end}}'
-      msg: 'Variable "GIT_TAG" is required (e.g. task git:tag GIT_TAG=0.0.0)'
-    cmds:
-    - git tag --annotate --message='release v{{.GIT_TAG}}' --sign v{{.GIT_TAG}}
-    - git --no-pager tag -n
     silent: true
 
   lint:
     desc: Run all linters
     cmds:
-    - task: markdownlint
-    - task: yamllint
-    silent: true
-
-  markdownlint:
-    desc: Lint Markdown files
-    cmds:
-    - docker run -it --rm --volume "$(pwd):/work" tmknom/markdownlint:latest --config .github/linters/.markdown-lint.yml --ignore node_modules --ignore test/testdata/expected .
-    silent: true
-
-  yamllint:
-    desc: Lint YAML files
-    cmds:
-    - yamllint --config-file .github/linters/.yaml-lint.yml --format auto --strict .
-    silent: true
-
-  licensed:list:
-    desc: List dependencies
-    cmds:
-    - licensed list
-    silent: true
-
-  licensed:status:
-    desc: Check licensed status
-    cmds:
-    - licensed status
-    silent: true
-
-  licensed:cache:
-    desc: Upate licensed cache
-    cmds:
-    - npm ci
-    - licensed cache --force
-    silent: true
-
-  licensed:notices:
-    desc: Generate NOTICE file
-    cmds:
-    - licensed notices
+    - task: lint:markdownlint
+    - task: lint:yamllint
     silent: true
 
   version:

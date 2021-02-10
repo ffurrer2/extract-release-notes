@@ -1,0 +1,16 @@
+# SPDX-License-Identifier: MIT
+# https://taskfile.dev
+version: '3'
+
+tasks:
+  markdownlint:
+    desc: Lint Markdown files
+    cmds:
+    - docker run -it --rm --volume "$(pwd):/work" tmknom/markdownlint:latest --config .github/linters/.markdown-lint.yml --ignore node_modules --ignore test/testdata/expected .
+    silent: true
+
+  yamllint:
+    desc: Lint YAML files
+    cmds:
+    - yamllint --config-file .github/linters/.yaml-lint.yml --format auto --strict .
+    silent: true

@@ -1,0 +1,14 @@
+# SPDX-License-Identifier: MIT
+# https://taskfile.dev
+version: '3'
+
+tasks:
+  create-tag:
+    desc: Create release tag
+    preconditions:
+    - sh: '{{if empty .GIT_TAG}}false{{end}}'
+      msg: 'error: variable "GIT_TAG" is required (e.g. task git:tag GIT_TAG=0.0.0)'
+    cmds:
+    - git tag --annotate --message='release v{{.GIT_TAG}}' --sign v{{.GIT_TAG}}
+    - git --no-pager tag -n
+    silent: true

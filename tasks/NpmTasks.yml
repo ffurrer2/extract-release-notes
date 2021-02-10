@@ -1,0 +1,48 @@
+# SPDX-License-Identifier: MIT
+# https://taskfile.dev
+version: '3'
+
+tasks:
+  clean:
+    desc: Clean build artifacts
+    cmds:
+    - rm -rf node_modules/
+    silent: true
+
+  prepare:
+    desc: Install packages
+    cmds:
+    - npm install
+    silent: true
+
+  build:
+    desc: Compile Node.js module
+    preconditions:
+    - sh: '[[ "$(node --version | cut -c 2-)" =~ "^12\.[[:digit:]]+\.[[:digit:]]+$" ]]'
+      msg: 'error: unsupported Node.js version'
+    cmds:
+    - rm -rf dist/
+    - task: prepare
+    - npm run build
+    - git add dist/index.js
+    silent: true
+
+  release:
+    desc: Compile Node.js module
+    cmds:
+    - rm -rf dist/
+    - rm -rf node_modules/
+    - npm ci
+    - npm run build
+    - git add dist/*
+    silent: true
+
+  check-dependency-updates:
+    desc: Check dependency updates
+    cmds:
+    - ncu
+
+  update-dependencies:
+    desc: Update dependency updates
+    cmds:
+    - ncu --upgrade
