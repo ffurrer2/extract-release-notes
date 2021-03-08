@@ -31,7 +31,7 @@
   "devDependencies": {
     "jest": "^26.6.3",
     "@vercel/ncc": "^0.27.0",
-    "npm-check-updates": "^11.1.10",
+    "npm-check-updates": "^11.2.0",
     "eslint": "^7.21.0",
     "eslint-config-standard": "^16.0.2",
     "eslint-plugin-import": "^2.22.1",
