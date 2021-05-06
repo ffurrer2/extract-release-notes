@@ -1,5 +1,4 @@
-require('./sourcemap-register.js');module.exports =
-/******/ (() => { // webpackBootstrap
+require('./sourcemap-register.js');/******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
 /***/ 241:
@@ -475,9 +474,89 @@ exports.toCommandValue = toCommandValue;
 
 /***/ }),
 
-/***/ 351:
-/***/ ((__unused_webpack_module, __unused_webpack_exports, __nccwpck_require__) => {
+/***/ 747:
+/***/ ((module) => {
 
+"use strict";
+module.exports = require("fs");;
+
+/***/ }),
+
+/***/ 87:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("os");;
+
+/***/ }),
+
+/***/ 622:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("path");;
+
+/***/ }),
+
+/***/ 58:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("readline");;
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __nccwpck_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			id: moduleId,
+/******/ 			loaded: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		var threw = true;
+/******/ 		try {
+/******/ 			__webpack_modules__[moduleId].call(module.exports, module, module.exports, __nccwpck_require__);
+/******/ 			threw = false;
+/******/ 		} finally {
+/******/ 			if(threw) delete __webpack_module_cache__[moduleId];
+/******/ 		}
+/******/ 	
+/******/ 		// Flag the module as loaded
+/******/ 		module.loaded = true;
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/node module decorator */
+/******/ 	(() => {
+/******/ 		__nccwpck_require__.nmd = (module) => {
+/******/ 			module.paths = [];
+/******/ 			if (!module.children) module.children = [];
+/******/ 			return module;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/compat */
+/******/ 	
+/******/ 	if (typeof __nccwpck_require__ !== 'undefined') __nccwpck_require__.ab = __dirname + "/";/************************************************************************/
+var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+(() => {
 // SPDX-License-Identifier: MIT
 const core = __nccwpck_require__(186)
 const fs = __nccwpck_require__(747)
@@ -556,92 +635,9 @@ function writeReleaseNotesFile(releaseNotesFile, releaseNotes) {
     }
 }
 
+})();
 
-/***/ }),
-
-/***/ 747:
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("fs");;
-
-/***/ }),
-
-/***/ 87:
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("os");;
-
-/***/ }),
-
-/***/ 622:
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("path");;
-
-/***/ }),
-
-/***/ 58:
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("readline");;
-
-/***/ })
-
-/******/ 	});
-/************************************************************************/
-/******/ 	// The module cache
-/******/ 	var __webpack_module_cache__ = {};
-/******/ 	
-/******/ 	// The require function
-/******/ 	function __nccwpck_require__(moduleId) {
-/******/ 		// Check if module is in cache
-/******/ 		if(__webpack_module_cache__[moduleId]) {
-/******/ 			return __webpack_module_cache__[moduleId].exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			id: moduleId,
-/******/ 			loaded: false,
-/******/ 			exports: {}
-/******/ 		};
-/******/ 	
-/******/ 		// Execute the module function
-/******/ 		var threw = true;
-/******/ 		try {
-/******/ 			__webpack_modules__[moduleId].call(module.exports, module, module.exports, __nccwpck_require__);
-/******/ 			threw = false;
-/******/ 		} finally {
-/******/ 			if(threw) delete __webpack_module_cache__[moduleId];
-/******/ 		}
-/******/ 	
-/******/ 		// Flag the module as loaded
-/******/ 		module.loaded = true;
-/******/ 	
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/ 	
-/************************************************************************/
-/******/ 	/* webpack/runtime/node module decorator */
-/******/ 	(() => {
-/******/ 		__nccwpck_require__.nmd = (module) => {
-/******/ 			module.paths = [];
-/******/ 			if (!module.children) module.children = [];
-/******/ 			return module;
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/compat */
-/******/ 	
-/******/ 	__nccwpck_require__.ab = __dirname + "/";/************************************************************************/
-/******/ 	// module exports must be returned from runtime so entry inlining is disabled
-/******/ 	// startup
-/******/ 	// Load entry module and return exports
-/******/ 	return __nccwpck_require__(351);
+module.exports = __webpack_exports__;
 /******/ })()
 ;
 //# sourceMappingURL=index.js.map

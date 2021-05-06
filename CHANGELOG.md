@@ -17,6 +17,12 @@ All notable changes to this project will be documented in this file.
 
 ### Security
 
+## [1.6.0] - 2021-04-17
+
+### Changed
+
+* Dependencies updated
+
 ## [1.5.0] - 2021-02-10
 
 ### Added
@@ -25,7 +31,7 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
-* Updated various dependencies.
+* Dependencies updated
 
 ## [1.4.0] - 2020-11-01
 
