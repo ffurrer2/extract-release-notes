@@ -29,7 +29,7 @@
     "esrever": "^0.2.0"
   },
   "devDependencies": {
-    "@vercel/ncc": "^0.28.3",
+    "@vercel/ncc": "^0.28.5",
     "eslint": "^7.26.0",
     "eslint-config-standard": "^16.0.2",
     "eslint-plugin-import": "^2.22.1",
