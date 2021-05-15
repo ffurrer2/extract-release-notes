@@ -3,12 +3,34 @@
 version: '3'
 
 tasks:
+  list-tags:
+    desc: List tags
+    cmds:
+    - git --no-pager tag -n
+    silent: true
+
+  list-remote-tags:
+    desc: List remote tags
+    cmds:
+    - git --no-pager ls-remote --tags --refs origin
+    silent: true
+
   create-tag:
     desc: Create release tag
     preconditions:
     - sh: '{{if empty .GIT_TAG}}false{{end}}'
-      msg: 'error: variable "GIT_TAG" is required (e.g. task git:tag GIT_TAG=0.0.0)'
+      msg: 'error: variable "GIT_TAG" is required (e.g. task git:create-tag GIT_TAG=0.0.0)'
     cmds:
     - git tag --annotate --message='release v{{.GIT_TAG}}' --sign v{{.GIT_TAG}}
-    - git --no-pager tag -n
+    - task: list-tags
+    silent: true
+
+  push-tag:
+    desc: Push release tag
+    preconditions:
+    - sh: '{{if empty .GIT_TAG}}false{{end}}'
+      msg: 'error: variable "GIT_TAG" is required (e.g. task git:push-tag GIT_TAG=0.0.0)'
+    cmds:
+    - git push origin v{{.GIT_TAG}}
+    - task: list-remote-tags
     silent: true

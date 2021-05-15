@@ -17,6 +17,12 @@ All notable changes to this project will be documented in this file.
 
 ### Security
 
+## [1.7.0] - 2021-05-16
+
+### Changed
+
+* Dependencies updated
+
 ## [1.6.0] - 2021-04-17
 
 ### Changed
