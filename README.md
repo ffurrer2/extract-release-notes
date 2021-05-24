@@ -1,9 +1,9 @@
 <!-- SPDX-License-Identifier: MIT -->
 # Extract Release Notes
 
-[![CI](https://github.com/ffurrer2/extract-release-notes/workflows/CI/badge.svg)](https://github.com/ffurrer2/extract-release-notes/actions?query=workflow%3ACI)
-[![MIT License](https://img.shields.io/github/license/ffurrer2/extract-release-notes)](https://github.com/ffurrer2/extract-release-notes/blob/main/LICENSE)
-[![GitHub Release](https://img.shields.io/github/v/release/ffurrer2/extract-release-notes?sort=semver)](https://github.com/ffurrer2/extract-release-notes/releases/latest)
+[![CI](https://github.com/gdcorp-action-public-forks/extract-release-notes/workflows/CI/badge.svg)](https://github.com/gdcorp-action-public-forks/extract-release-notes/actions?query=workflow%3ACI)
+[![MIT License](https://img.shields.io/github/license/gdcorp-action-public-forks/extract-release-notes)](https://github.com/gdcorp-action-public-forks/extract-release-notes/blob/main/LICENSE)
+[![GitHub Release](https://img.shields.io/github/v/release/gdcorp-action-public-forks/extract-release-notes?sort=semver)](https://github.com/gdcorp-action-public-forks/extract-release-notes/releases/latest)
 
 This GitHub Action extracts release notes from a [Keep a Changelog](https://keepachangelog.com/) formatted changelog file.
 
@@ -48,7 +48,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Extract release notes
         id: extract-release-notes
-        uses: ffurrer2/extract-release-notes@v1
+        uses: gdcorp-action-public-forks/extract-release-notes@v1
       - name: Create release
         uses: actions/create-release@v1
         env:
@@ -78,7 +78,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Extract release notes
         id: extract-release-notes
-        uses: ffurrer2/extract-release-notes@v1
+        uses: gdcorp-action-public-forks/extract-release-notes@v1
         with:
           changelog_file: MY_CHANGELOG.md
 ```
@@ -93,7 +93,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Extract release notes
-        uses: ffurrer2/extract-release-notes@v1
+        uses: gdcorp-action-public-forks/extract-release-notes@v1
         with:
           release_notes_file: RELEASE_NOTES.md
 ```
