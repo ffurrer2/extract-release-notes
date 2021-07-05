@@ -25,7 +25,7 @@ jobs:
       with:
         version: '2.x'
     - name: Setup Node.js
-      uses: actions/setup-node@v2.1.5
+      uses: actions/setup-node@v2.2.0
       with:
         node-version: '12'
     - uses: actions/cache@v2.1.6
