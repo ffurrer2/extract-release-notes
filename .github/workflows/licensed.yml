@@ -6,12 +6,12 @@ on:
     branches:
     - main
     - feature/**
-    - dependabot/**
     paths:
-    - package.json
-    - package-lock.json
     - .github/workflows/licensed.yml
+    - .licensed.yml
     - .licenses/**
+    - package-lock.json
+    - package.json
 
 jobs:
   licensed:
