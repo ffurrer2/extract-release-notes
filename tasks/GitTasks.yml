@@ -19,9 +19,9 @@ tasks:
     desc: Create release tag
     preconditions:
     - sh: '{{if empty .GIT_TAG}}false{{end}}'
-      msg: 'error: variable "GIT_TAG" is required (e.g. task git:create-tag GIT_TAG=0.0.0)'
+      msg: 'error: variable "GIT_TAG" is required (e.g. task git:create-tag GIT_TAG=v0.0.0)'
     cmds:
-    - git tag --annotate --message='release v{{.GIT_TAG}}' --sign v{{.GIT_TAG}}
+    - git tag --annotate --message='release {{.GIT_TAG}}' --sign {{.GIT_TAG}}
     - task: list-tags
     silent: true
 
@@ -29,8 +29,8 @@ tasks:
     desc: Push release tag
     preconditions:
     - sh: '{{if empty .GIT_TAG}}false{{end}}'
-      msg: 'error: variable "GIT_TAG" is required (e.g. task git:push-tag GIT_TAG=0.0.0)'
+      msg: 'error: variable "GIT_TAG" is required (e.g. task git:push-tag GIT_TAG=v0.0.0)'
     cmds:
-    - git push origin v{{.GIT_TAG}}
+    - git push origin {{.GIT_TAG}}
     - task: list-remote-tags
     silent: true
