@@ -6,7 +6,7 @@ tasks:
   markdownlint:
     desc: Lint Markdown files
     cmds:
-    - docker run -it --rm --volume "$(pwd):/work" tmknom/markdownlint:latest --config .github/linters/.markdown-lint.yml --ignore node_modules --ignore test/testdata/expected .
+    - docker run -it --rm --user "$(id -u):$(id -g)" --volume "$(pwd):/work" --workdir /work tmknom/markdownlint:latest --config .github/linters/.markdown-lint.yml --ignore node_modules --ignore test/testdata/expected .
     silent: true
 
   yamllint:
