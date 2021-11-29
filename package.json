@@ -24,19 +24,19 @@
   },
   "homepage": "https://github.com/ffurrer2/extract-release-notes#readme",
   "dependencies": {
-    "@actions/core": "^1.5.0",
+    "@actions/core": "^1.6.0",
     "@actions/github": "^5.0.0",
     "esrever": "^0.2.0"
   },
   "devDependencies": {
-    "@vercel/ncc": "^0.29.2",
-    "@types/node": "^12.20.13",
+    "@vercel/ncc": "^0.32.0",
+    "@types/node": "^12.20.37",
     "eslint": "^7.32.0",
     "eslint-config-standard": "^16.0.3",
-    "eslint-plugin-import": "^2.24.1",
+    "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^5.1.0",
-    "jest": "^27.0.6",
-    "npm-check-updates": "^11.8.3"
+    "eslint-plugin-promise": "^5.1.1",
+    "jest": "^27.3.1",
+    "npm-check-updates": "^12.0.2"
   }
 }
