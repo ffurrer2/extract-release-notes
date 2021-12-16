@@ -25,10 +25,10 @@ jobs:
       with:
         version: '2.x'
     - name: Setup Node.js
-      uses: actions/setup-node@v2.4.1
+      uses: actions/setup-node@v2.5.0
       with:
         node-version: '12'
-    - uses: actions/cache@v2.1.6
+    - uses: actions/cache@v2.1.7
       with:
         path: ~/.npm
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
