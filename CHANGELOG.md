@@ -22,6 +22,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [1.11.0] - 2022-01-22
 
+### Added
+
+- Added `prerelease` parameter to extract the content between the first (`## [Unreleased]`) and second H2 header
+
 ### Changed
 
 - Dependencies updated
@@ -102,17 +106,3 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Added
 
 - Initial release of the `extract-release-notes` action
-
-[unreleased]: https://github.com/ffurrer2/extract-release-notes/compare/v1.11.0...HEAD
-[1.11.0]: https://github.com/ffurrer2/extract-release-notes/compare/v1.10.0...v1.11.0
-[1.10.0]: https://github.com/ffurrer2/extract-release-notes/compare/v1.9.0...v1.10.0
-[1.9.0]: https://github.com/ffurrer2/extract-release-notes/compare/v1.8.0...v1.9.0
-[1.8.0]: https://github.com/ffurrer2/extract-release-notes/compare/v1.7.0...v1.8.0
-[1.7.0]: https://github.com/ffurrer2/extract-release-notes/compare/v1.6.0...v1.7.0
-[1.6.0]: https://github.com/ffurrer2/extract-release-notes/compare/v1.5.0...v1.6.0
-[1.5.0]: https://github.com/ffurrer2/extract-release-notes/compare/v1.4.0...v1.5.0
-[1.4.0]: https://github.com/ffurrer2/extract-release-notes/compare/v1.3.0...v1.4.0
-[1.3.0]: https://github.com/ffurrer2/extract-release-notes/compare/v1.2.0...v1.3.0
-[1.2.0]: https://github.com/ffurrer2/extract-release-notes/compare/v1.1.0...v1.2.0
-[1.1.0]: https://github.com/ffurrer2/extract-release-notes/compare/v1.0.0...v1.1.0
-[1.0.0]: https://github.com/ffurrer2/extract-release-notes/compare/70f3ebe7...v1.0.0
