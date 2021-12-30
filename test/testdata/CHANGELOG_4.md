@@ -8,6 +8,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Added
+
+- At vero eos et accusam et justo duo dolores et ea rebum.
+
+### Security
+
+- At vero eos et accusam et justo duo dolores et ea rebum.
+- Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
 ## [1.0.0] - 2020-02-01
 
 ### Added

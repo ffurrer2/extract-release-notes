@@ -93,17 +93,30 @@ jobs:
       id: extract-release-notes-6
       uses: ./
       with:
+        changelog_file: test/testdata/CHANGELOG_4.md
+        prerelease: true
+    - name: Assert that release_notes output contains expected content
+      shell: bash
+      env:
+        RELEASE_NOTES: ${{ steps.extract-release-notes-6.outputs.release_notes }}
+      run: |
+        diff <(echo -n "${RELEASE_NOTES}") test/testdata/expected/RELEASE_NOTES_4.md
+
+    - name: Run action
+      id: extract-release-notes-7
+      uses: ./
+      with:
         changelog_file: test/testdata/CHANGELOG_1.md
         release_notes_file: RELEASE_NOTES.md
     - name: Assert that RELEASE_NOTES.md contains expected content
       shell: bash
       env:
-        RELEASE_NOTES: ${{ steps.extract-release-notes-6.outputs.release_notes }}
+        RELEASE_NOTES: ${{ steps.extract-release-notes-7.outputs.release_notes }}
       run: |
         diff RELEASE_NOTES.md test/testdata/expected/RELEASE_NOTES_1.md
 
     - name: Run action
-      id: extract-release-notes-7
+      id: extract-release-notes-8
       uses: ./
       with:
         changelog_file: test/testdata/CHANGELOG_2.md
@@ -111,12 +124,12 @@ jobs:
     - name: Assert that RELEASE_NOTES.md contains expected content
       shell: bash
       env:
-        RELEASE_NOTES: ${{ steps.extract-release-notes-7.outputs.release_notes }}
+        RELEASE_NOTES: ${{ steps.extract-release-notes-8.outputs.release_notes }}
       run: |
         diff RELEASE_NOTES.md test/testdata/expected/RELEASE_NOTES_2.md
 
     - name: Run action
-      id: extract-release-notes-8
+      id: extract-release-notes-9
       uses: ./
       with:
         changelog_file: test/testdata/CHANGELOG_3.md
@@ -124,6 +137,6 @@ jobs:
     - name: Assert that RELEASE_NOTES.md contains expected content
       shell: bash
       env:
-        RELEASE_NOTES: ${{ steps.extract-release-notes-8.outputs.release_notes }}
+        RELEASE_NOTES: ${{ steps.extract-release-notes-9.outputs.release_notes }}
       run: |
         diff RELEASE_NOTES.md test/testdata/expected/RELEASE_NOTES_3.md
