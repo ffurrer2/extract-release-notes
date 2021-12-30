@@ -17,7 +17,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
     - name: yamllint
-      uses: docker://ffurrer/yamllint:latest
+      uses: docker://ghcr.io/ffurrer2/yamllint:latest
       with:
         entrypoint: /usr/bin/yamllint
         args: '--config-file .github/linters/.yaml-lint.yml --format github --strict .'
