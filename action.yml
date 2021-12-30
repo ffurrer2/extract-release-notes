@@ -17,5 +17,5 @@ outputs:
   release_notes:
     description: 'The escaped release notes.'
 runs:
-  using: 'node12'
+  using: 'node16'
   main: 'dist/index.js'

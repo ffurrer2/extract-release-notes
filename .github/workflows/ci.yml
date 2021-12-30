@@ -8,7 +8,7 @@ on:
     - feature/**
     paths-ignore:
     - '**.md'
-    - .gitignore
+    - '.gitignore'
 
 jobs:
   build:
