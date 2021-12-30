@@ -31,7 +31,7 @@ jobs:
         npm ci
     - name: Compile Node.js module
       run: |
-        npm run build
+        npm run all
 
     - name: Run action
       id: extract-release-notes-1

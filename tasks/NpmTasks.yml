@@ -9,10 +9,16 @@ tasks:
     - rm -rf node_modules/
     silent: true
 
-  prepare:
+  install:
     desc: Install packages
     cmds:
     - npm install
+    silent: true
+
+  lint:
+    desc: Lint code
+    cmds:
+    - npm run lint
     silent: true
 
   build:
@@ -22,8 +28,9 @@ tasks:
       msg: 'error: unsupported Node.js version'
     cmds:
     - rm -rf dist/
-    - task: prepare
-    - npm run build
+    - task: install
+    - task: lint
+    - npm run prepare
     - git add dist/index.js
     silent: true
 
@@ -31,9 +38,8 @@ tasks:
     desc: Compile Node.js module
     cmds:
     - rm -rf dist/
-    - rm -rf node_modules/
     - npm ci
-    - npm run build
+    - npm run all
     - git add dist/*
     silent: true
 
@@ -41,8 +47,10 @@ tasks:
     desc: Check dependency updates
     cmds:
     - ncu
+    silent: true
 
   update-dependencies:
     desc: Update dependency updates
     cmds:
     - ncu --upgrade
+    silent: true

@@ -30,7 +30,7 @@ jobs:
         npm ci
     - name: Compile Node.js module
       run: |
-        npm run build
+        npm run all
     - name: Verify no untracked files and unstaged changes
       run: |
         if [[ -n "$(git status --porcelain)" ]]; then

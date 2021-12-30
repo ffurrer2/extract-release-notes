@@ -1,11 +1,13 @@
 {
   "name": "extract-release-notes",
   "version": "1.4.0",
+  "description": "extract release notes action",
   "main": "src/index.js",
   "scripts": {
     "lint": "eslint .",
-    "build": "ncc build src/index.js --source-map",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prepare": "ncc build src/index.js --out dist --source-map",
+    "test": "jest --passWithNoTests",
+    "all": "npm run lint && npm run prepare && npm run test"
   },
   "repository": {
     "type": "git",
