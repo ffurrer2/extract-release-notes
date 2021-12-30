@@ -29,7 +29,7 @@ tasks:
     - sh: '{{if empty .GIT_TAG}}false{{end}}'
       msg: 'error: variable "GIT_TAG" is required (e.g. task git:create-tag GIT_TAG=v0.0.0)'
     cmds:
-    - git tag --annotate --message='release v{{.GIT_TAG}}' --sign {{.GIT_TAG}}
+    - git tag --annotate --message='release {{.GIT_TAG}}' --sign {{.GIT_TAG}}
     - task: list-tags
     silent: true
 

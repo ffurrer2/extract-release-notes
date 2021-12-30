@@ -1,0 +1,10 @@
+# SPDX-License-Identifier: MIT
+# https://taskfile.dev
+version: '3'
+
+tasks:
+  lint:
+    desc: Lint YAML files
+    cmds:
+    - yamllint --config-file .github/linters/.yaml-lint.yml --format auto --strict .
+    silent: true
