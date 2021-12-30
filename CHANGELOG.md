@@ -18,6 +18,13 @@ All notable changes to this project will be documented in this file.
 
 ### Security
 
+## [1.10.0] - 2021-12-30
+
+### Changed
+
+- Dependencies updated
+- Node version bumped from 12.x to 16.x
+
 ## [1.9.0] - 2021-07-31
 
 ### Changed
