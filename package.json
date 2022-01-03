@@ -37,6 +37,6 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^6.0.0",
     "jest": "^27.4.5",
-    "npm-check-updates": "^12.0.5"
+    "npm-check-updates": "^12.1.0"
   }
 }
