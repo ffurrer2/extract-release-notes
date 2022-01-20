@@ -8,7 +8,7 @@ on:
     - feature/**
     paths-ignore:
     - '**.md'
-    - .gitignore
+    - '.gitignore'
 
 jobs:
   build:
@@ -17,9 +17,9 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
     - name: Setup Node.js
-      uses: actions/setup-node@v2.5.0
+      uses: actions/setup-node@v2.5.1
       with:
-        node-version: '12'
+        node-version: '16'
     - uses: actions/cache@v2.1.7
       with:
         path: ~/.npm

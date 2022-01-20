@@ -5,8 +5,9 @@ version: '3'
 includes:
   git: ./tasks/GitTasks.yml
   licensed: ./tasks/LicensedTasks.yml
-  lint: ./tasks/LinterTasks.yml
+  markdownlint: ./tasks/MarkdownlintTasks.yml
   npm: ./tasks/NpmTasks.yml
+  yamllint: ./tasks/YamllintTasks.yml
 
 vars:
   PROJECT_NAME: extract-release-notes
@@ -39,8 +40,8 @@ tasks:
   lint:
     desc: Run all linters
     cmds:
-    - task: lint:markdownlint
-    - task: lint:yamllint
+    - task: markdownlint:lint
+    - task: yamllint:lint
     silent: true
 
   version:

@@ -15,8 +15,16 @@ tasks:
     - git --no-pager ls-remote --tags --refs origin
     silent: true
 
+  fetch:
+    desc: Fetch
+    cmds:
+    - git fetch --verbose --all --force --tags --prune --prune-tags
+    silent: true
+
   create-tag:
     desc: Create release tag
+    vars:
+      GIT_TAG: '{{default .DOCKER_TAG .GIT_TAG}}'
     preconditions:
     - sh: '{{if empty .GIT_TAG}}false{{end}}'
       msg: 'error: variable "GIT_TAG" is required (e.g. task git:create-tag GIT_TAG=v0.0.0)'

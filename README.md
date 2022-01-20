@@ -1,4 +1,5 @@
 <!-- SPDX-License-Identifier: MIT -->
+
 # Extract Release Notes
 
 [![CI](https://github.com/gdcorp-action-public-forks/extract-release-notes/workflows/CI/badge.svg)](https://github.com/gdcorp-action-public-forks/extract-release-notes/actions?query=workflow%3ACI)
@@ -16,10 +17,10 @@ This GitHub Action extracts release notes from a [Keep a Changelog](https://keep
 
 ### Inputs
 
-| Input                             | Description                                                     |
-| --------------------------------- | --------------------------------------------------------------- |
+| Input                             | Description                                                   |
+| --------------------------------- | ------------------------------------------------------------- |
 | `changelog_file` _(optional)_     | The input path of the changelog file. Default: `CHANGELOG.md` |
-| `release_notes_file` _(optional)_ | The output path of the (optional) release notes file.           |
+| `release_notes_file` _(optional)_ | The output path of the (optional) release notes file.         |
 
 ### Outputs
 
@@ -37,7 +38,7 @@ name: Create Release
 on:
   push:
     tags:
-      - "*.*.*"
+      - '*.*.*'
 
 jobs:
   build:

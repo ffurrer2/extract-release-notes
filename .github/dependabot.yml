@@ -8,7 +8,9 @@ updates:
     interval: 'weekly'
   assignees:
   - 'ffurrer2'
-  open-pull-requests-limit: 42
+  labels:
+  - 'dependabot'
+  open-pull-requests-limit: 999
   rebase-strategy: 'auto'
 
 - package-ecosystem: 'npm'
@@ -17,5 +19,7 @@ updates:
     interval: 'weekly'
   assignees:
   - 'ffurrer2'
-  open-pull-requests-limit: 42
+  labels:
+  - 'dependabot'
+  open-pull-requests-limit: 999
   rebase-strategy: 'auto'
