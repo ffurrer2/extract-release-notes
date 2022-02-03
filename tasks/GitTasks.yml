@@ -6,7 +6,7 @@ tasks:
   list-tags:
     desc: List tags
     cmds:
-    - git --no-pager tag -n
+    - git --no-pager tag --list
     silent: true
 
   list-remote-tags:

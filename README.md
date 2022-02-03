@@ -99,6 +99,23 @@ jobs:
           release_notes_file: RELEASE_NOTES.md
 ```
 
+### Extract prerelease notes
+
+To extract the content between the first (`## [Unreleased]`) and second H2 header, set the `prerelease` parameter to `true`.
+
+```yaml
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Extract release notes
+        uses: ffurrer2/extract-release-notes@v1
+        with:
+          prerelease: true
+```
+
 ## License
 
 The scripts and documentation in this project are released under the [MIT License](LICENSE).

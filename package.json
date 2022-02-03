@@ -1,11 +1,13 @@
 {
   "name": "extract-release-notes",
   "version": "1.4.0",
+  "description": "extract release notes action",
   "main": "src/index.js",
   "scripts": {
     "lint": "eslint .",
-    "build": "ncc build src/index.js --source-map",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prepare": "ncc build src/index.js --out dist --source-map",
+    "test": "jest --passWithNoTests",
+    "all": "npm run lint && npm run prepare && npm run test"
   },
   "repository": {
     "type": "git",
@@ -30,13 +32,8 @@
   },
   "devDependencies": {
     "@vercel/ncc": "^0.33.1",
-    "@types/node": "^17.0.9",
-    "eslint": "^8.7.0",
-    "eslint-config-standard": "^16.0.3",
-    "eslint-plugin-import": "^2.25.4",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^6.0.0",
+    "eslint": "^8.8.0",
     "jest": "^27.4.7",
-    "npm-check-updates": "^12.1.0"
+    "npm-check-updates": "^12.2.1"
   }
 }

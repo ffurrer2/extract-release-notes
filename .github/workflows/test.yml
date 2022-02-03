@@ -30,7 +30,7 @@ jobs:
         npm ci
     - name: Compile Node.js module
       run: |
-        npm run build
+        npm run all
     - name: Verify no untracked files and unstaged changes
       run: |
         if [[ -n "$(git status --porcelain)" ]]; then
@@ -85,8 +85,20 @@ jobs:
   intergration-test-3:
     strategy:
       matrix:
-        os: [ 'ubuntu-20.04', 'macos-11.0', 'windows-2019' ]
-        test: [ 1, 2, 3 ]
+        os: [ 'windows-2019' ]
+        test:
+        - changelog_file: CHANGELOG_1.md
+          expected_release_notes_file: RELEASE_NOTES_1.md
+          prerelease: false
+        - changelog_file: CHANGELOG_2.md
+          expected_release_notes_file: RELEASE_NOTES_2.md
+          prerelease: false
+        - changelog_file: CHANGELOG_3.md
+          expected_release_notes_file: RELEASE_NOTES_3.md
+          prerelease: false
+        - changelog_file: CHANGELOG_4.md
+          expected_release_notes_file: RELEASE_NOTES_4.md
+          prerelease: true
     runs-on: ${{ matrix.os }}
     steps:
     - name: Checkout
@@ -95,19 +107,32 @@ jobs:
       id: extract-release-notes
       uses: ./
       with:
-        changelog_file: test/testdata/CHANGELOG_${{ matrix.test }}.md
+        changelog_file: test/testdata/${{ matrix.test.changelog_file }}
+        prerelease: ${{ matrix.test.prerelease }}
     - name: Assert that release_notes output contains expected content
       shell: bash
       env:
         RELEASE_NOTES: ${{ steps.extract-release-notes.outputs.release_notes }}
       run: |
-        diff <(echo -n "${RELEASE_NOTES}") test/testdata/expected/RELEASE_NOTES_${{ matrix.test }}.md
+        diff <(echo -n "${RELEASE_NOTES}") test/testdata/expected/${{ matrix.test.expected_release_notes_file }}
 
   intergration-test-4:
     strategy:
       matrix:
-        os: [ 'ubuntu-20.04', 'macos-11.0', 'windows-2019' ]
-        test: [ 1, 2, 3 ]
+        os: [ 'windows-2019' ]
+        test:
+        - changelog_file: CHANGELOG_1.md
+          expected_release_notes_file: RELEASE_NOTES_1.md
+          prerelease: false
+        - changelog_file: CHANGELOG_2.md
+          expected_release_notes_file: RELEASE_NOTES_2.md
+          prerelease: false
+        - changelog_file: CHANGELOG_3.md
+          expected_release_notes_file: RELEASE_NOTES_3.md
+          prerelease: false
+        - changelog_file: CHANGELOG_4.md
+          expected_release_notes_file: RELEASE_NOTES_4.md
+          prerelease: true
     runs-on: ${{ matrix.os }}
     steps:
     - name: Checkout
@@ -116,11 +141,10 @@ jobs:
       id: extract-release-notes
       uses: ./
       with:
-        changelog_file: test/testdata/CHANGELOG_${{ matrix.test }}.md
+        changelog_file: test/testdata/${{ matrix.test.changelog_file }}
         release_notes_file: RELEASE_NOTES.md
+        prerelease: ${{ matrix.test.prerelease }}
     - name: Assert that RELEASE_NOTES.md contains expected content
       shell: bash
-      env:
-        RELEASE_NOTES: ${{ steps.extract-release-notes.outputs.release_notes }}
       run: |
-        diff RELEASE_NOTES.md test/testdata/expected/RELEASE_NOTES_${{ matrix.test }}.md
+        diff RELEASE_NOTES.md test/testdata/expected/${{ matrix.test.expected_release_notes_file }}

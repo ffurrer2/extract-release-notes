@@ -1795,7 +1795,10 @@ async function main() {
     const releaseNotesFile = core.getInput('release_notes_file')
     core.debug(`release-notes-file = '${releaseNotesFile}'`)
 
-    const releaseNotes = await extractReleaseNotes(changelogFile)
+    const prerelease = core.getInput('prerelease')
+    core.debug(`prerelease = '${prerelease}'`)
+
+    const releaseNotes = await extractReleaseNotes(changelogFile, prerelease)
     core.debug(`release-notes = '${releaseNotes}'`)
 
     writeReleaseNotesFile(releaseNotesFile, releaseNotes)
@@ -1803,7 +1806,7 @@ async function main() {
     core.setOutput("release_notes", releaseNotes)
 }
 
-async function extractReleaseNotes(changelogFile) {
+async function extractReleaseNotes(changelogFile, prerelease) {
     const fileStream = fs.createReadStream(changelogFile, {encoding: encoding})
     const rl = readline.createInterface({
         input: fileStream
@@ -1811,9 +1814,9 @@ async function extractReleaseNotes(changelogFile) {
     const lines = []
     let inside_release = false
     for await (const line of rl) {
-        const line_is_version = !!line.match("^#+ \\[[0-9]")
+        const start_of_release = (!!line.match("^#+ \\[[0-9]") || (prerelease === 'true' && !!line.match("^#+ \\[Unreleased\\]")))
         if (inside_release) {
-            if (line_is_version) {
+            if (start_of_release) {
                 core.debug(`next version found: '${line}'`)
                 break
             } else {
@@ -1821,7 +1824,7 @@ async function extractReleaseNotes(changelogFile) {
                 core.debug(`add line: '${line}'`)
             }
         } else {
-            if (line_is_version) {
+            if (start_of_release) {
                 inside_release = true
                 core.debug(`version found: '${line}'`)
             } else {

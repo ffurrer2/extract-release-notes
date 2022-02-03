@@ -7,12 +7,16 @@ branding:
   color: 'white'
 inputs:
   changelog_file:
-    description: 'The input path of the changelog file.'
+    description: 'The input path of the changelog file. Default: `CHANGELOG.md`'
     required: false
     default: 'CHANGELOG.md'
   release_notes_file:
-    description: 'The output path of the (optional) release notes file.'
+    description: 'The output path of the release notes file (optional).'
     required: false
+  prerelease:
+    description: '`true` to get release notes from the `[Unreleased]` section. `false` to get release notes for the latest release. Default: `false`'
+    required: false
+    default: 'false'
 outputs:
   release_notes:
     description: 'The escaped release notes.'
