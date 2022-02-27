@@ -113,7 +113,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Initial release of the `extract-release-notes` action
 
-
 [unreleased]: https://github.com/ffurrer2/extract-release-notes/compare/v1.12.0...HEAD
 [1.12.0]: https://github.com/ffurrer2/extract-release-notes/compare/v1.11.0...v1.12.0
 [1.11.0]: https://github.com/ffurrer2/extract-release-notes/compare/v1.10.0...v1.11.0
