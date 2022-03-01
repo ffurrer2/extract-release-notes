@@ -23,7 +23,7 @@ jobs:
     - name: Setup Licensed
       uses: jonabc/setup-licensed@v1
       with:
-        version: '2.x'
+        version: '3.x'
     - name: Setup Node.js
       uses: actions/setup-node@v2.5.1
       with:
