@@ -15,12 +15,12 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
     - name: Setup Node.js
-      uses: actions/setup-node@v2.5.1
+      uses: actions/setup-node@v3
       with:
         node-version: '16'
-    - uses: actions/cache@v2.1.7
+    - uses: actions/cache@v3
       with:
         path: ~/.npm
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
