@@ -50,7 +50,7 @@ jobs:
   intergration-test-1:
     strategy:
       matrix:
-        os: [ 'ubuntu-20.04', 'macos-11.0', 'windows-2022' ]
+        os: [ 'ubuntu-20.04', 'macos-12', 'windows-2022' ]
     runs-on: ${{ matrix.os }}
     steps:
     - name: Checkout
@@ -68,7 +68,7 @@ jobs:
   intergration-test-2:
     strategy:
       matrix:
-        os: [ 'ubuntu-20.04', 'macos-11.0', 'windows-2022' ]
+        os: [ 'ubuntu-20.04', 'macos-12', 'windows-2022' ]
     runs-on: ${{ matrix.os }}
     steps:
     - name: Checkout
