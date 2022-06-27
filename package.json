@@ -34,6 +34,6 @@
     "@vercel/ncc": "^0.34.0",
     "eslint": "^8.18.0",
     "jest": "^28.1.1",
-    "npm-check-updates": "^14.0.1"
+    "npm-check-updates": "^14.1.1"
   }
 }
