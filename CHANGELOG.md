@@ -25,7 +25,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Changed
 
 - Dependencies updated
-- 
+
 ## [1.14.0] - 2022-05-02
 
 ### Changed
