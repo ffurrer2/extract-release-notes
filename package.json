@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/ffurrer2/extract-release-notes#readme",
   "dependencies": {
-    "@actions/core": "^1.9.0",
+    "@actions/core": "^1.9.1",
     "@actions/github": "^5.0.3",
     "esrever": "^0.2.0"
   },
