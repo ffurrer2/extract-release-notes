@@ -15,7 +15,7 @@ on:
 
 jobs:
   licensed:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     name: Check licenses
     steps:
     - name: Checkout
