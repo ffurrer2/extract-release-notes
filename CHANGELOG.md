@@ -20,7 +20,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Security
 
-## [1.16.0] - 2022-xx-xx
+## [1.16.0] - 2022-10-01
 
 ### Changed
 
@@ -137,7 +137,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Initial release of the `extract-release-notes` action
 
-[unreleased]: https://github.com/ffurrer2/extract-release-notes/compare/v1.14.0...HEAD
+[unreleased]: https://github.com/ffurrer2/extract-release-notes/compare/v1.16.0...HEAD
+[1.15.0]: https://github.com/ffurrer2/extract-release-notes/compare/v1.15.0...v1.16.0
+[1.15.0]: https://github.com/ffurrer2/extract-release-notes/compare/v1.14.0...v1.15.0
 [1.14.0]: https://github.com/ffurrer2/extract-release-notes/compare/v1.13.0...v1.14.0
 [1.13.0]: https://github.com/ffurrer2/extract-release-notes/compare/v1.12.0...v1.13.0
 [1.12.0]: https://github.com/ffurrer2/extract-release-notes/compare/v1.11.0...v1.12.0
