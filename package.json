@@ -31,9 +31,9 @@
     "esrever": "^0.2.0"
   },
   "devDependencies": {
-    "@vercel/ncc": "^0.34.0",
-    "eslint": "^8.29.0",
+    "@vercel/ncc": "^0.36.0",
+    "eslint": "^8.30.0",
     "jest": "^29.3.1",
-    "npm-check-updates": "^16.4.3"
+    "npm-check-updates": "^16.6.2"
   }
 }
