@@ -17,10 +17,12 @@ This GitHub Action extracts release notes from a [Keep a Changelog](https://keep
 
 ### Inputs
 
-| Input                             | Description                                                   |
-|-----------------------------------|---------------------------------------------------------------|
-| `changelog_file` _(optional)_     | The input path of the changelog file. Default: `CHANGELOG.md` |
-| `release_notes_file` _(optional)_ | The output path of the (optional) release notes file.         |
+| Input                             | Description                                                                                           |
+| --------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| `changelog_file` _(optional)_     | The input path of the changelog file. Default: `CHANGELOG.md`                                         |
+| `release_notes_file` _(optional)_ | The output path of the (optional) release notes file.                                                 |
+| `version_prefix` _(optional)_     | A prefix before the version number in the changelog header tag, e.g. `version` as in [version x.y.z]. |
+| `header_level` _(optional)_       | The header level where the version description is expected. Default: `2`                              |
 
 ### Outputs
 
@@ -76,6 +78,38 @@ jobs:
         uses: ffurrer2/extract-release-notes@v2
         with:
           changelog_file: MY_CHANGELOG.md
+```
+
+### Change expected version header level to H3
+
+```yaml
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Extract release notes
+        id: extract-release-notes
+        uses: ffurrer2/extract-release-notes@v1
+        with:
+          header_level: 3
+```
+
+### Accept CHANGELOG.md files with [Version x.y.z] titles
+
+```yaml
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Extract release notes
+        id: extract-release-notes
+        uses: ffurrer2/extract-release-notes@v1
+        with:
+          version_prefix: Version
 ```
 
 ### Create a release notes file

@@ -17,6 +17,14 @@ inputs:
     description: '`true` to get release notes from the `[Unreleased]` section. `false` to get release notes for the latest release. Default: `false`'
     required: false
     default: 'false'
+  version_prefix:
+    description: 'A prefix before the version number in the changelog.md header tag, e.g. `version` as in [version x.y.z]. Default: ``'
+    required: false
+    default: ''
+  header_level:
+    description:  'The header level where the version description is expected. Default: `2`'
+    required: false
+    default:  2
 outputs:
   release_notes:
     description: 'The escaped release notes.'
