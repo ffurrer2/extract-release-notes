@@ -3,12 +3,6 @@
 version: '3'
 
 tasks:
-  fix-binary:
-    desc: Delete the quarantine extended attribute
-    cmds:
-    - xattr -d com.apple.quarantine "${HOME}/.local/bin/licensed"
-    silent: true
-
   list:
     desc: List dependencies
     cmds:
