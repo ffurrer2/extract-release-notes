@@ -3,7 +3,7 @@ name: safer-buffer
 version: 2.1.2
 type: npm
 summary: Modern Buffer API polyfill without footguns
-homepage: 
+homepage:
 license: mit
 licenses:
 - sources: LICENSE

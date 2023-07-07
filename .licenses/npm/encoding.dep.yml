@@ -3,7 +3,7 @@ name: encoding
 version: 0.1.13
 type: npm
 summary: Convert encodings, uses iconv-lite
-homepage: 
+homepage:
 license: mit
 licenses:
 - sources: LICENSE
