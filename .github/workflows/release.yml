@@ -7,8 +7,10 @@ on:
     - 'v*.*.*'
 
 jobs:
-  release-build:
+  release:
     runs-on: ubuntu-22.04
+    permissions:
+      contents: write
     steps:
     - name: Checkout
       uses: actions/checkout@v3
@@ -16,12 +18,6 @@ jobs:
       id: extract-release-notes
       uses: ffurrer2/extract-release-notes@v1
     - name: Create release
-      uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ github.ref }}
-        release_name: ${{ github.ref }}
-        draft: true
-        prerelease: false
-        body: ${{ steps.extract-release-notes.outputs.release_notes }}
+      run: gh release create ${{ github.ref_name }} --draft --notes '${{ steps.extract-release-notes.outputs.release_notes }}' --title ${{ github.ref_name }} --verify-tag

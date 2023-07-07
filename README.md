@@ -18,19 +18,19 @@ This GitHub Action extracts release notes from a [Keep a Changelog](https://keep
 ### Inputs
 
 | Input                             | Description                                                   |
-| --------------------------------- | ------------------------------------------------------------- |
+|-----------------------------------|---------------------------------------------------------------|
 | `changelog_file` _(optional)_     | The input path of the changelog file. Default: `CHANGELOG.md` |
 | `release_notes_file` _(optional)_ | The output path of the (optional) release notes file.         |
 
 ### Outputs
 
 | Output          | Description                |
-| --------------- | -------------------------- |
+|-----------------|----------------------------|
 | `release_notes` | The escaped release notes. |
 
 ### Example workflow - create a release with release notes
 
-On every `push` to a tag matching the pattern `*.*.*`, extract the release notes from the `CHANGELOG.md` file and [create a release](https://github.com/actions/create-release):
+On every `push` to a tag matching the pattern `*.*.*`, extract the release notes from the `CHANGELOG.md` file and [create a release](https://help.github.com/en/articles/creating-releases):
 
 ```yaml
 name: Create Release
@@ -41,7 +41,7 @@ on:
       - '*.*.*'
 
 jobs:
-  build:
+  release:
     name: Create release
     runs-on: ubuntu-latest
     steps:
@@ -51,20 +51,12 @@ jobs:
         id: extract-release-notes
         uses: ffurrer2/extract-release-notes@v1
       - name: Create release
-        uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: ${{ github.ref }}
-          draft: false
-          prerelease: false
-          body: ${{ steps.extract-release-notes.outputs.release_notes }}
+        run: gh release create --notes '${{ steps.extract-release-notes.outputs.release_notes }}' --title ${{ github.ref_name }} ${{ github.ref_name }}
 ```
 
-This will extract the content between the second and third H2 header from the `CHANGELOG.md` file, store this content in the output variable `release_notes` and create a [release](https://help.github.com/en/articles/creating-releases) using the official [create-release](https://github.com/actions/create-release) action.
-
-This uses the `GITHUB_TOKEN` provided by the [virtual environment](https://help.github.com/en/github/automating-your-workflow-with-github-actions/virtual-environments-for-github-actions#github_token-secret), so no new token is needed.
+This code will extract the content between the second and third H2 header from the `CHANGELOG.md` file, store this content in the output variable `release_notes` and create a release using the [`gh release create`](https://cli.github.com/manual/gh_release_create) command.
 
 ## Examples
 
@@ -72,7 +64,7 @@ This uses the `GITHUB_TOKEN` provided by the [virtual environment](https://help.
 
 ```yaml
 jobs:
-  build:
+  release:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -88,7 +80,7 @@ jobs:
 
 ```yaml
 jobs:
-  build:
+  release:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -105,7 +97,7 @@ To extract the content between the first (`## [Unreleased]`) and second H2 heade
 
 ```yaml
 jobs:
-  build:
+  release:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
