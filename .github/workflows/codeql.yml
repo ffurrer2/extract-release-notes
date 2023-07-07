@@ -1,0 +1,25 @@
+# SPDX-License-Identifier: MIT
+name: CodeQL
+
+on:
+  push:
+    branches:
+    - main
+    - feature/**
+  pull_request:
+    branches:
+    - main
+  schedule:
+  - cron: '0 12 * * 0'
+
+permissions:
+  actions: read
+  contents: read
+  security-events: write
+
+jobs:
+  codeql:
+    name: codeql
+    uses: ffurrer2/shared-workflows/.github/workflows/codeql.yml@main
+    with:
+      languages: '["javascript"]'
