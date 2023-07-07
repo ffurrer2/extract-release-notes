@@ -2,7 +2,7 @@
 version: 2
 
 updates:
-- package-ecosystem: 'github-actions'
+- package-ecosystem: github-actions
   directory: '/'
   schedule:
     interval: 'weekly'
@@ -13,7 +13,7 @@ updates:
   open-pull-requests-limit: 999
   rebase-strategy: 'auto'
 
-- package-ecosystem: 'npm'
+- package-ecosystem: npm
   directory: '/'
   schedule:
     interval: 'weekly'

@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: MIT
 name: 'Extract Release Notes'
-author: 'Felix Furrer'
 description: 'Extract release notes from a "Keep a Changelog" changelog file.'
+author: 'Felix Furrer'
 branding:
   icon: 'align-left'
   color: 'white'
