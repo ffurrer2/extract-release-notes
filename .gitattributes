@@ -1,4 +1,7 @@
-*   text=auto
+# SPDX-License-Identifier: MIT
+*               text=auto
+.gitattributes  text eol=lf
+.gitignore      text eol=lf
 
 dist/** -diff linguist-generated=true
 
