@@ -41,6 +41,8 @@ tasks:
     desc: Run all linters
     cmds:
     - task: markdownlint:lint
+      vars:
+        ADDITIONAL_ARGS: '--ignore test/'
     - task: yamllint:lint
     silent: true
 

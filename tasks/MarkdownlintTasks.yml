@@ -5,6 +5,8 @@ version: '3'
 tasks:
   lint:
     desc: Lint Markdown files
+    vars:
+      ADDITIONAL_ARGS: '{{.ADDITIONAL_ARGS}}'
     cmds:
-    - docker run -it --rm --user "$(id -u):$(id -g)" --volume "$(pwd):/work" --workdir /work tmknom/markdownlint:latest --config .github/linters/.markdown-lint.yml .
+    - docker run -it --rm --volume "$(pwd):/work" --workdir /work ghcr.io/tmknom/dockerfiles/markdownlint:latest --config .github/linters/.markdown-lint.yml --dot --ignore node_modules/ {{.ADDITIONAL_ARGS}} .
     silent: true
