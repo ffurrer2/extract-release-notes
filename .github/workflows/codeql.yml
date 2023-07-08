@@ -19,7 +19,8 @@ permissions:
 
 jobs:
   codeql:
-    name: codeql
+    name: CodeQL
     uses: ffurrer2/shared-workflows/.github/workflows/codeql.yml@main
     with:
       languages: '["javascript"]'
+      config-file: .github/codeql/codeql-config.yml
