@@ -9,7 +9,9 @@ on:
 jobs:
   actions-tagger:
     runs-on: ubuntu-22.04
+    permissions:
+      contents: write
     steps:
     - uses: Actions-R-Us/actions-tagger@v2
-      env:
-        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      with:
+        token: ${{secrets.GITHUB_TOKEN}}
