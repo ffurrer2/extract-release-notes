@@ -20,6 +20,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Security
 
+## [2.0.0] - 2024-01-27
+
+### Changed
+
+- Default runtime updated to node20
+
 ## [1.17.0] - 2023-07-08
 
 ### Changed
@@ -143,7 +149,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Initial release of the `extract-release-notes` action
 
-[unreleased]: https://github.com/ffurrer2/extract-release-notes/compare/v1.17.0...HEAD
+[Unreleased]: https://github.com/ffurrer2/extract-release-notes/compare/v1.17.0...HEAD
 [1.17.0]: https://github.com/ffurrer2/extract-release-notes/compare/v1.16.0...v1.17.0
 [1.16.0]: https://github.com/ffurrer2/extract-release-notes/compare/v1.15.0...v1.16.0
 [1.15.0]: https://github.com/ffurrer2/extract-release-notes/compare/v1.14.0...v1.15.0
