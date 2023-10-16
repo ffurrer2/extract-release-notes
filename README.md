@@ -49,7 +49,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Extract release notes
         id: extract-release-notes
-        uses: ffurrer2/extract-release-notes@v1
+        uses: ffurrer2/extract-release-notes@v2
       - name: Create release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -71,7 +71,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Extract release notes
         id: extract-release-notes
-        uses: ffurrer2/extract-release-notes@v1
+        uses: ffurrer2/extract-release-notes@v2
         with:
           changelog_file: MY_CHANGELOG.md
 ```
@@ -86,7 +86,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Extract release notes
-        uses: ffurrer2/extract-release-notes@v1
+        uses: ffurrer2/extract-release-notes@v2
         with:
           release_notes_file: RELEASE_NOTES.md
 ```
@@ -103,7 +103,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Extract release notes
-        uses: ffurrer2/extract-release-notes@v1
+        uses: ffurrer2/extract-release-notes@v2
         with:
           prerelease: true
 ```
