@@ -20,6 +20,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Security
 
+## [2.1.0] - 2024-02-17
+
+### Changed
+
+- Dependencies updated
+
 ## [2.0.0] - 2024-01-27
 
 ### Changed
@@ -149,7 +155,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Initial release of the `extract-release-notes` action
 
-[Unreleased]: https://github.com/ffurrer2/extract-release-notes/compare/v2.0.0...HEAD
+[Unreleased]: https://github.com/ffurrer2/extract-release-notes/compare/v2.1.0...HEAD
+[2.1.0]: https://github.com/ffurrer2/extract-release-notes/compare/v2.0.0...v2.1.0
 [2.0.0]: https://github.com/ffurrer2/extract-release-notes/compare/v1.17.0...v2.0.0
 [1.17.0]: https://github.com/ffurrer2/extract-release-notes/compare/v1.16.0...v1.17.0
 [1.16.0]: https://github.com/ffurrer2/extract-release-notes/compare/v1.15.0...v1.16.0
