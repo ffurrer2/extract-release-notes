@@ -24,7 +24,7 @@ tasks:
   build:
     desc: Compile Node.js module
     preconditions:
-    - sh: '[[ "$(node --version | cut -c 2-)" =~ "^16\.[[:digit:]]+\.[[:digit:]]+$" ]]'
+    - sh: '[[ "$(node --version | cut -c 2-)" =~ "^20\.[[:digit:]]+\.[[:digit:]]+$" ]]'
       msg: 'error: unsupported Node.js version'
     cmds:
     - rm -rf dist/
