@@ -91,7 +91,7 @@ jobs:
         uses: actions/checkout@v3
       - name: Extract release notes
         id: extract-release-notes
-        uses: ffurrer2/extract-release-notes@v1
+        uses: ffurrer2/extract-release-notes@v2
         with:
           header_level: 3
 ```
@@ -107,7 +107,7 @@ jobs:
         uses: actions/checkout@v3
       - name: Extract release notes
         id: extract-release-notes
-        uses: ffurrer2/extract-release-notes@v1
+        uses: ffurrer2/extract-release-notes@v2
         with:
           version_prefix: Version
 ```
