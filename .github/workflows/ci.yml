@@ -6,6 +6,9 @@ on:
     branches:
     - dependabot/**
     - feature/**
+    pull_request:
+      branches:
+      - main
     paths-ignore:
     - '**.md'
     - '.gitignore'
