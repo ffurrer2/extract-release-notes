@@ -26763,7 +26763,7 @@ async function extractReleaseNotes(changelogFile, prerelease) {
             }
         }
     }
-    let releaseNotes = lines.reduce((previousValue, currentValue) => previousValue + eol + currentValue)
+    let releaseNotes = lines.reduce((previousValue, currentValue) => previousValue + eol + currentValue, '')
     releaseNotes = trimEmptyLinesTop(releaseNotes)
     releaseNotes = trimEmptyLinesBottom(releaseNotes)
     return releaseNotes
