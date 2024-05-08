@@ -20,6 +20,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Security
 
+## [2.2.0] - 2024-05-08
+
+### Fixed
+
+- The action now correctly handles the case where no release notes are found in the changelog. Thanks to [kishor82](https://github.com/kishor82) for his contribution.
+
 ## [2.1.0] - 2024-02-17
 
 ### Changed
