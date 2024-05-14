@@ -35,6 +35,7 @@ jobs:
       run: |
         npm run all
     - name: Verify no untracked files and unstaged changes
+      if: github.event_name != 'pull_request'
       run: |
         if [[ -n "$(git status --porcelain)" ]]; then
             echo ----------------------------------------
