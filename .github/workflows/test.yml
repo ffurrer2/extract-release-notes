@@ -103,6 +103,14 @@ jobs:
         - changelog_file: CHANGELOG_4.md
           expected_release_notes_file: RELEASE_NOTES_4.md
           prerelease: true
+        - changelog_file: CHANGELOG_5.md
+          expected_release_notes_file: RELEASE_NOTES_1.md
+          prerelease: false
+          version_prefix: v
+        - changelog_file: CHANGELOG_6.md
+          expected_release_notes_file: RELEASE_NOTES_1.md
+          prerelease: false
+          header_level: 3
     runs-on: ${{ matrix.os }}
     steps:
     - name: Checkout
@@ -137,6 +145,14 @@ jobs:
         - changelog_file: CHANGELOG_4.md
           expected_release_notes_file: RELEASE_NOTES_4.md
           prerelease: true
+        - changelog_file: CHANGELOG_5.md
+          expected_release_notes_file: RELEASE_NOTES_1.md
+          prerelease: false
+          version_prefix: v
+        - changelog_file: CHANGELOG_6.md
+          expected_release_notes_file: RELEASE_NOTES_1.md
+          prerelease: false
+          header_level: 3
     runs-on: ${{ matrix.os }}
     steps:
     - name: Checkout
