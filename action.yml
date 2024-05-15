@@ -22,9 +22,9 @@ inputs:
     required: false
     default: ''
   header_level:
-    description:  'The header level where the version description is expected. Default: `2`'
+    description: 'The header level where the version description is expected. Default: `2`'
     required: false
-    default:  2
+    default: 2
 outputs:
   release_notes:
     description: 'The escaped release notes.'

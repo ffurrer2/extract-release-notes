@@ -108,7 +108,7 @@ jobs:
           prerelease: false
           version_prefix: v
         - changelog_file: CHANGELOG_6.md
-          expected_release_notes_file: RELEASE_NOTES_1.md
+          expected_release_notes_file: RELEASE_NOTES_6.md
           prerelease: false
           header_level: 3
     runs-on: ${{ matrix.os }}
@@ -150,7 +150,7 @@ jobs:
           prerelease: false
           version_prefix: v
         - changelog_file: CHANGELOG_6.md
-          expected_release_notes_file: RELEASE_NOTES_1.md
+          expected_release_notes_file: RELEASE_NOTES_6.md
           prerelease: false
           header_level: 3
     runs-on: ${{ matrix.os }}
