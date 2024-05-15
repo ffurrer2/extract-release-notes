@@ -166,4 +166,4 @@ jobs:
       env:
         RELEASE_NOTES: ${{ steps.extract-release-notes-11.outputs.release_notes }}
       run: |
-        diff <(echo -n "${RELEASE_NOTES}") test/testdata/expected/RELEASE_NOTES_1.md
+        diff <(echo -n "${RELEASE_NOTES}") test/testdata/expected/RELEASE_NOTES_6.md
