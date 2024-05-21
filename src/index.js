@@ -44,8 +44,8 @@ async function extractReleaseNotes(changelogFile, prerelease, versionPrefix, hea
     const header_level = (Number.isInteger(headerLevel) && (headerLevel > 0) && (headerLevel < 7)) ? +headerLevel : 2
     const level_match_regex = "^#{" + header_level + "}\\s+"
     const levelup_match_regex = (header_level > 1) ? "^#{1," + (header_level - 1) + "}\\s+" : level_match_regex
-    const version_match_regex = "\\[" + escapeRegex(versionPrefix) + "\\s*[0-9]"
-    const unreleases_match_regex = "\\[Unreleased\\]"
+    const version_match_regex = "\\[?" + escapeRegex(versionPrefix) + "\\s*[0-9]"
+    const unreleases_match_regex = "\\[?Unreleased\\]?"
     core.debug(`version_match_regex: '${version_match_regex}'`)
     core.debug(`unrelease_match_regex: '${unreleases_match_regex}'`)
     for await (const line of rl) {
