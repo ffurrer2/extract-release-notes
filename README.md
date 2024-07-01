@@ -3,7 +3,7 @@
 # Extract Release Notes
 
 [![CI](https://github.com/ffurrer2/extract-release-notes/workflows/CI/badge.svg)](https://github.com/ffurrer2/extract-release-notes/actions?query=workflow%3ACI)
-[![MIT License](https://img.shields.io/github/license/ffurrer2/extract-release-notes)](https://github.com/ffurrer2/extract-release-notes/blob/main/LICENSE)
+[![MIT License](https://img.shields.io/github/license/ffurrer2/extract-release-notes)](LICENSE)
 [![GitHub Release](https://img.shields.io/github/v/release/ffurrer2/extract-release-notes?sort=semver)](https://github.com/ffurrer2/extract-release-notes/releases/latest)
 
 This GitHub Action extracts release notes from a [Keep a Changelog](https://keepachangelog.com/) formatted changelog file.
@@ -44,6 +44,8 @@ jobs:
   release:
     name: Create release
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -53,7 +55,7 @@ jobs:
       - name: Create release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh release create --notes '${{ steps.extract-release-notes.outputs.release_notes }}' --title ${{ github.ref_name }} ${{ github.ref_name }}
+        run: gh release create ${{ github.ref_name }} --title ${{ github.ref_name }} --notes '${{ steps.extract-release-notes.outputs.release_notes }}'
 ```
 
 This code will extract the content between the second and third H2 header from the `CHANGELOG.md` file, store this content in the output variable `release_notes` and create a release using the [`gh release create`](https://cli.github.com/manual/gh_release_create) command.
