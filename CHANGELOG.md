@@ -10,6 +10,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 
+- Allow for version number prefix in the changelog header tag, e.g. `version` as in [version x.y.z]
+- Allow for changing the header level (default 2) where the version description is expected
+- Allow for omitting enclosing brackets of version number
+
 ### Changed
 
 ### Deprecated

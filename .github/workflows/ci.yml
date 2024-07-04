@@ -143,3 +143,39 @@ jobs:
         RELEASE_NOTES: ${{ steps.extract-release-notes-9.outputs.release_notes }}
       run: |
         diff RELEASE_NOTES.md test/testdata/expected/RELEASE_NOTES_3.md
+    - name: Run action
+      id: extract-release-notes-10
+      uses: ./
+      with:
+        changelog_file: test/testdata/CHANGELOG_5.md
+        version_prefix: v
+    - name: Assert that release_notes contains expected content
+      shell: bash
+      env:
+        RELEASE_NOTES: ${{ steps.extract-release-notes-10.outputs.release_notes }}
+      run: |
+        diff <(echo -n "${RELEASE_NOTES}") test/testdata/expected/RELEASE_NOTES_1.md
+    - name: Run action
+      id: extract-release-notes-11
+      uses: ./
+      with:
+        changelog_file: test/testdata/CHANGELOG_6.md
+        header_level: 3
+    - name: Assert that release_notes contains expected content
+      shell: bash
+      env:
+        RELEASE_NOTES: ${{ steps.extract-release-notes-11.outputs.release_notes }}
+      run: |
+        diff <(echo -n "${RELEASE_NOTES}") test/testdata/expected/RELEASE_NOTES_6.md
+    - name: Run action
+      id: extract-release-notes-12
+      uses: ./
+      with:
+        changelog_file: test/testdata/CHANGELOG_7.md
+        version_prefix: version
+    - name: Assert that release_notes contains expected content
+      shell: bash
+      env:
+        RELEASE_NOTES: ${{ steps.extract-release-notes-12.outputs.release_notes }}
+      run: |
+        diff <(echo -n "${RELEASE_NOTES}") test/testdata/expected/RELEASE_NOTES_1.md
