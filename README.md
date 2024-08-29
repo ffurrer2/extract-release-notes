@@ -55,7 +55,7 @@ jobs:
       - name: Create release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh release create ${{ github.ref_name }} --title ${{ github.ref_name }} --notes '${{ steps.extract-release-notes.outputs.release_notes }}'
+        run: gh release create ${{ github.ref_name }} --notes '${{ steps.extract-release-notes.outputs.release_notes }}'
 ```
 
 This code will extract the content between the second and third H2 header from the `CHANGELOG.md` file, store this content in the output variable `release_notes` and create a release using the [`gh release create`](https://cli.github.com/manual/gh_release_create) command.
