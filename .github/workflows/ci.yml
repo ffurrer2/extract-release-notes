@@ -143,3 +143,16 @@ jobs:
         RELEASE_NOTES: ${{ steps.extract-release-notes-9.outputs.release_notes }}
       run: |
         diff RELEASE_NOTES.md test/testdata/expected/RELEASE_NOTES_3.md
+
+    - name: Run action
+      id: extract-release-notes-10
+      uses: ./
+      with:
+        changelog_file: test/testdata/CHANGELOG_5.md
+        release_notes_file: RELEASE_NOTES.md
+    - name: Assert that RELEASE_NOTES.md contains expected content
+      shell: bash
+      env:
+        RELEASE_NOTES: ${{ steps.extract-release-notes-10.outputs.release_notes }}
+      run: |
+        diff RELEASE_NOTES.md test/testdata/expected/RELEASE_NOTES_5.md
