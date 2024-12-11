@@ -23,3 +23,10 @@ updates:
   - 'dependabot'
   open-pull-requests-limit: 999
   rebase-strategy: 'auto'
+  groups:
+    go-dependencies:
+      patterns:
+      - '*'
+      update-types:
+      - 'minor'
+      - 'patch'
