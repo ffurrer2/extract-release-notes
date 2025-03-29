@@ -1,6 +1,6 @@
 {
   "name": "extract-release-notes",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "extract release notes action",
   "main": "src/index.js",
   "scripts": {
