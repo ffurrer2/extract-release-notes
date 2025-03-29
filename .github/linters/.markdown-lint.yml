@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: MIT
 default: true
 
-MD013: false  # MD013/line-length Line length
-MD024: false  # MD024/no-duplicate-heading/no-duplicate-header Multiple headings with the same content
-MD026: false  # MD026/no-trailing-punctuation Trailing punctuation in heading
-MD053: false  # MD053/link-image-reference-definitions Link and image reference definitions should be needed
+MD013: false # MD013/line-length Line length
+MD024: false # MD024/no-duplicate-heading/no-duplicate-header Multiple headings with the same content
+MD026: false # MD026/no-trailing-punctuation Trailing punctuation in heading
+MD053: false # MD053/link-image-reference-definitions Link and image reference definitions should be needed

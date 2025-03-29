@@ -19,23 +19,22 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-24.04
-    permissions: {}
+    permissions:
+      contents: read
     steps:
     - name: Checkout
       uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
     - name: Setup Node.js
       uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e # v4.3.0
       with:
-        node-version: 20.x
-    - uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # v4.2.3
-      with:
-        path: ~/.npm
-        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-node-
+        node-version-file: .node-version
+        cache: npm
+
     - name: Install packages
       run: |
         npm ci
+
     - name: Compile Node.js module
       run: |
         npm run all
@@ -43,6 +42,7 @@ jobs:
     - name: Run action
       id: extract-release-notes-1
       uses: ./
+
     - name: Assert that release_notes output is not empty
       shell: bash
       env:
@@ -55,6 +55,7 @@ jobs:
       uses: ./
       with:
         release_notes_file: RELEASE_NOTES.md
+
     - name: Assert that RELEASE_NOTES.md exists
       shell: bash
       run: |
@@ -65,6 +66,7 @@ jobs:
       uses: ./
       with:
         changelog_file: test/testdata/CHANGELOG_1.md
+
     - name: Assert that release_notes output contains expected content
       shell: bash
       env:
@@ -77,6 +79,7 @@ jobs:
       uses: ./
       with:
         changelog_file: test/testdata/CHANGELOG_2.md
+
     - name: Assert that release_notes output contains expected content
       shell: bash
       env:
@@ -89,6 +92,7 @@ jobs:
       uses: ./
       with:
         changelog_file: test/testdata/CHANGELOG_3.md
+
     - name: Assert that release_notes output contains expected content
       shell: bash
       env:
@@ -102,6 +106,7 @@ jobs:
       with:
         changelog_file: test/testdata/CHANGELOG_4.md
         prerelease: true
+
     - name: Assert that release_notes output contains expected content
       shell: bash
       env:
@@ -115,6 +120,7 @@ jobs:
       with:
         changelog_file: test/testdata/CHANGELOG_1.md
         release_notes_file: RELEASE_NOTES.md
+
     - name: Assert that RELEASE_NOTES.md contains expected content
       shell: bash
       env:
@@ -128,6 +134,7 @@ jobs:
       with:
         changelog_file: test/testdata/CHANGELOG_2.md
         release_notes_file: RELEASE_NOTES.md
+
     - name: Assert that RELEASE_NOTES.md contains expected content
       shell: bash
       env:
@@ -141,6 +148,7 @@ jobs:
       with:
         changelog_file: test/testdata/CHANGELOG_3.md
         release_notes_file: RELEASE_NOTES.md
+
     - name: Assert that RELEASE_NOTES.md contains expected content
       shell: bash
       env:
@@ -154,6 +162,7 @@ jobs:
       with:
         changelog_file: test/testdata/CHANGELOG_5.md
         release_notes_file: RELEASE_NOTES.md
+
     - name: Assert that RELEASE_NOTES.md contains expected content
       shell: bash
       env:

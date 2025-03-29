@@ -3,30 +3,35 @@ version: 2
 
 updates:
 - package-ecosystem: github-actions
-  directory: '/'
+  directory: /
   schedule:
-    interval: 'monthly'
+    interval: monthly
   assignees:
-  - 'ffurrer2'
+  - ffurrer2
   labels:
-  - 'dependabot'
+  - dependabot
   open-pull-requests-limit: 999
-  rebase-strategy: 'auto'
+  rebase-strategy: auto
+  groups:
+    actions-minor:
+      update-types:
+      - minor
+      - patch
 
 - package-ecosystem: npm
-  directory: '/'
+  directory: /
   schedule:
-    interval: 'monthly'
+    interval: monthly
   assignees:
-  - 'ffurrer2'
+  - ffurrer2
   labels:
-  - 'dependabot'
+  - dependabot
   open-pull-requests-limit: 999
-  rebase-strategy: 'auto'
+  rebase-strategy: auto
   groups:
-    npm-dependencies:
+    npm-minor:
       patterns:
       - '*'
       update-types:
-      - 'minor'
-      - 'patch'
+      - minor
+      - patch

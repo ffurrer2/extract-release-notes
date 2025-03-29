@@ -30,7 +30,7 @@ tasks:
     - rm -rf dist/
     - task: install
     - task: lint
-    - npm run prepare
+    - npm run package
     - git add dist/index.js
     silent: true
 

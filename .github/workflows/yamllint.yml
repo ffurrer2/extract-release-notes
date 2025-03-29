@@ -5,7 +5,6 @@ on:
   push:
     branches:
     - main
-    - feature/**
     paths:
     - '**.ya?ml'
   pull_request:
@@ -13,6 +12,9 @@ on:
     - main
     paths:
     - '**.ya?ml'
+
+permissions:
+  contents: read
 
 jobs:
   yamllint:
