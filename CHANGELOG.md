@@ -10,8 +10,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 
-- Support parsing headers that start with v.
-
 ### Changed
 
 ### Deprecated
@@ -21,6 +19,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Fixed
 
 ### Security
+
+## [2.3.0] - 2025-03-29
+
+### Added
+
+- Support parsing headers that start with v. Thanks to [Goooler](https://github.com/Valandur) for his contribution.
+
+### Changed
+
+- Dependencies updated
 
 ## [2.2.0] - 2024-05-08
 
@@ -163,7 +171,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Initial release of the `extract-release-notes` action
 
-[Unreleased]: https://github.com/ffurrer2/extract-release-notes/compare/v2.2.0...HEAD
+[Unreleased]: https://github.com/ffurrer2/extract-release-notes/compare/v2.3.0...HEAD
+[2.3.0]: https://github.com/ffurrer2/extract-release-notes/compare/v2.2.0...v2.3.0
 [2.2.0]: https://github.com/ffurrer2/extract-release-notes/compare/v2.1.0...v2.2.0
 [2.1.0]: https://github.com/ffurrer2/extract-release-notes/compare/v2.0.0...v2.1.0
 [2.0.0]: https://github.com/ffurrer2/extract-release-notes/compare/v1.17.0...v2.0.0
