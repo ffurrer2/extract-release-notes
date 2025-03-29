@@ -13,6 +13,6 @@ jobs:
     permissions:
       contents: write
     steps:
-    - uses: Actions-R-Us/actions-tagger@v2
+    - uses: Actions-R-Us/actions-tagger@330ddfac760021349fef7ff62b372f2f691c20fb # v2.0.3
       with:
         token: ${{secrets.GITHUB_TOKEN}}

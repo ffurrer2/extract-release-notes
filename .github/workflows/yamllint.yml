@@ -15,9 +15,9 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
     - name: Checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
     - name: yamllint
-      uses: docker://docker.io/cytopia/yamllint:latest
+      uses: docker://docker.io/cytopia/yamllint:latest@sha256:3e9eb827ab2b12a5ea5f49d4257bb3aca94bba9f1ba427c8bc7f2456385a5204
       with:
         entrypoint: /usr/bin/yamllint
         args: '--config-file .github/linters/.yaml-lint.yml --format github --strict .'
