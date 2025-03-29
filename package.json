@@ -24,8 +24,15 @@
   },
   "scripts": {
     "bundle": "npm run format:write && npm run package",
+    "ci-test": "NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 npx jest",
+    "coverage": "npx make-coverage-badge --output-path ./badges/coverage.svg",
+    "format:write": "npx prettier --write .",
+    "format:check": "npx prettier --check .",
     "lint": "npx eslint .",
+    "local-action": "npx @github/local-action . src/main.js .env",
     "package": "npx rollup --config rollup.config.js",
+    "package:watch": "npm run package -- --watch",
+    "test": "NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 npx jest",
     "all": "npm run lint && npm run package"
   },
   "license": "MIT",

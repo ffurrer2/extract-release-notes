@@ -16,8 +16,7 @@ export async function extractReleaseNotes(changelogFile, prerelease) {
   let inside_release = false
   for await (const line of rl) {
     const start_of_release =
-      !!line.match('^#+ \\[[vV]?[0-9]') ||
-      (prerelease === 'true' && !!line.match('^#+ \\[Unreleased\\]'))
+      !!line.match('^#+ \\[[vV]?[0-9]') || (prerelease === 'true' && !!line.match('^#+ \\[Unreleased\\]'))
     if (inside_release) {
       if (start_of_release) {
         core.debug(`next version found: '${line}'`)
@@ -35,10 +34,7 @@ export async function extractReleaseNotes(changelogFile, prerelease) {
       }
     }
   }
-  let releaseNotes = lines.reduce(
-    (previousValue, currentValue) => previousValue + eol + currentValue,
-    ''
-  )
+  let releaseNotes = lines.reduce((previousValue, currentValue) => previousValue + eol + currentValue, '')
   releaseNotes = trimEmptyLinesTop(releaseNotes)
   releaseNotes = trimEmptyLinesBottom(releaseNotes)
   return releaseNotes
@@ -59,15 +55,10 @@ function reverse(str) {
 export async function writeReleaseNotesFile(releaseNotesFile, releaseNotes) {
   if (releaseNotesFile !== '') {
     core.debug(`writing release notes file: '${releaseNotesFile}'`)
-    fs.writeFile(
-      releaseNotesFile,
-      releaseNotes,
-      { encoding: encoding },
-      (err) => {
-        if (err) {
-          throw err
-        }
+    fs.writeFile(releaseNotesFile, releaseNotes, { encoding: encoding }, (err) => {
+      if (err) {
+        throw err
       }
-    )
+    })
   }
 }
