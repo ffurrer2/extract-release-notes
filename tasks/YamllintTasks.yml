@@ -6,5 +6,5 @@ tasks:
   lint:
     desc: Lint YAML files
     cmds:
-    - yamllint --config-file .github/linters/.yaml-lint.yml --format auto --strict .
+    - docker run -it --rm --volume "$(pwd):/work" --workdir /work docker.io/cytopia/yamllint:latest --config-file .github/linters/.yaml-lint.yml --format auto --strict .
     silent: true

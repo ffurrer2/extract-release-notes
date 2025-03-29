@@ -50,7 +50,7 @@ tasks:
     desc: Show versions
     cmds:
     - |
-      set -e
+      set -euo pipefail
       printf 'git:      %s\n' "$(git --version | cut -d ' ' -f 3)"
       printf 'licensed: %s\n' "$(licensed version)"
       printf 'ncc:      %s\n' "$(ncc version)"
