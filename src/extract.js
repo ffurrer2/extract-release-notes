@@ -1,6 +1,5 @@
 // SPDX-License-Identifier: MIT
 import * as core from '@actions/core'
-import esrever from 'esrever'
 import fs from 'fs'
 import readline from 'readline'
 
@@ -50,7 +49,11 @@ function trimEmptyLinesTop(releaseNotes) {
 }
 
 function trimEmptyLinesBottom(releaseNotes) {
-  return esrever.reverse(trimEmptyLinesTop(esrever.reverse(releaseNotes)))
+  return reverse(trimEmptyLinesTop(reverse(releaseNotes)))
+}
+
+function reverse(str) {
+  return Array.from(str).reverse().join('')
 }
 
 export async function writeReleaseNotesFile(releaseNotesFile, releaseNotes) {
