@@ -13,10 +13,7 @@ export async function run() {
     const prerelease = core.getInput('prerelease')
     core.debug(`prerelease = '${prerelease}'`)
 
-    const releaseNotes = await extract.extractReleaseNotes(
-      changelogFile,
-      prerelease
-    )
+    const releaseNotes = await extract.extractReleaseNotes(changelogFile, prerelease)
     core.debug(`release-notes = '${releaseNotes}'`)
 
     await extract.writeReleaseNotesFile(releaseNotesFile, releaseNotes)
