@@ -5,5 +5,11 @@ sources:
 allowed:
 - apache-2.0
 - bsd-2-clause
+- bsd-3-clause
 - isc
 - mit
+
+ignored:
+  npm:
+  # Used by Rollup.js when building in GitHub Actions
+  - '@rollup/rollup-linux-x64-gnu'

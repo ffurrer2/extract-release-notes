@@ -5,7 +5,6 @@ on:
   push:
     branches:
     - main
-    - feature/**
     paths:
     - .github/workflows/licensed.yml
     - .licensed.yml
@@ -20,13 +19,24 @@ concurrency:
 jobs:
   licensed:
     name: Check licenses
-    permissions: {}
+    permissions:
+      contents: read
     runs-on: ubuntu-24.04
     steps:
     - name: Checkout
       uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
-    - name: Setup ruby
+    - name: Setup Node.js
+      uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e # v4.3.0
+      with:
+        node-version-file: .node-version
+        cache: npm
+
+    - name: Install packages
+      run: |
+        npm ci
+
+    - name: Setup Ruby
       uses: ruby/setup-ruby@354a1ad156761f5ee2b7b13fa8e09943a5e8d252 # v1.229.0
       with:
         ruby-version: ruby
@@ -34,25 +44,9 @@ jobs:
     - name: Setup Licensed
       uses: licensee/setup-licensed@0d52e575b3258417672be0dff2f115d7db8771d8 # v1.3.2
       with:
-        github_token: '${{ secrets.GITHUB_TOKEN }}'
-        version: '4.x'
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        version: 4.x
 
-    - name: Setup Node.js
-      uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e # v4.3.0
-      with:
-        node-version: 20.x
-
-    - uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # v4.2.3
-      with:
-        path: ~/.npm
-        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-node-
-
-    - name: Install packages
-      run: |
-        npm ci
-
-    - name: Check licensed status
+    - name: Check Licenses
       run: |
         licensed status

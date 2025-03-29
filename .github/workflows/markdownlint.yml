@@ -5,7 +5,6 @@ on:
   push:
     branches:
     - main
-    - feature/**
     paths:
     - '**.md'
     - '.github/linters/.markdown-lint.yml'
