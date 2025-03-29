@@ -13,9 +13,14 @@ on:
     - package-lock.json
     - package.json
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   licensed:
     name: Check licenses
+    permissions: {}
     runs-on: ubuntu-24.04
     steps:
     - name: Checkout
