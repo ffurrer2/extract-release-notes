@@ -7,6 +7,10 @@ on:
     - published
     - edited
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   actions-tagger:
     runs-on: ubuntu-24.04
