@@ -5,7 +5,7 @@ updates:
 - package-ecosystem: github-actions
   directory: '/'
   schedule:
-    interval: 'weekly'
+    interval: 'monthly'
   assignees:
   - 'ffurrer2'
   labels:
@@ -16,7 +16,7 @@ updates:
 - package-ecosystem: npm
   directory: '/'
   schedule:
-    interval: 'weekly'
+    interval: 'monthly'
   assignees:
   - 'ffurrer2'
   labels:
@@ -24,7 +24,7 @@ updates:
   open-pull-requests-limit: 999
   rebase-strategy: 'auto'
   groups:
-    go-dependencies:
+    npm-dependencies:
       patterns:
       - '*'
       update-types:
