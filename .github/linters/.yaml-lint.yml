@@ -1,29 +1,32 @@
 # SPDX-License-Identifier: MIT
 ---
+ignore: |
+  .git/
+  .licenses/
+  node_modules/
+
 extends: default
 
 rules:
-  empty-values: enable
+  braces:
+    min-spaces-inside: 0
+    max-spaces-inside: 0
+  brackets:
+    min-spaces-inside: 0
+    max-spaces-inside: 0
+  comments:
+    min-spaces-from-content: 1
   document-start: disable
-  line-length: disable
+  empty-values: enable
   indentation:
     spaces: 2
     indent-sequences: false
+  line-length: disable
+  quoted-strings:
+    quote-type: single
+    required: false
   truthy:
     allowed-values:
     - 'true'
     - 'false'
     - 'on'
-  quoted-strings:
-    quote-type: single
-    required: false
-  braces:
-    min-spaces-inside: 1
-    max-spaces-inside: 1
-  brackets:
-    min-spaces-inside: 1
-    max-spaces-inside: 1
-
-ignore: |
-  .licenses
-  node_modules/
