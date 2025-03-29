@@ -16,7 +16,7 @@ jobs:
       uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
     - name: Extract release notes
       id: extract-release-notes
-      uses: ffurrer2/extract-release-notes@9989ccec43d726ef05aa1cd7b2854fb96b6df6ab # v2.2.0
+      uses: ffurrer2/extract-release-notes@e6eca8f21c9704f166b76bdb8804bc5f7396c027 # v2.3.0
     - name: Create release
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
