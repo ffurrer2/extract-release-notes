@@ -16,7 +16,7 @@ tasks:
     silent: true
 
   cache:
-    desc: Upate licensed cache
+    desc: Update licensed cache
     cmds:
     - npm ci
     - licensed cache --force
