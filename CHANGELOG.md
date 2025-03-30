@@ -24,7 +24,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 
-- Support parsing headers that start with v. Thanks to [Goooler](https://github.com/Valandur) for his contribution.
+- Support parsing headers that start with v. Thanks to [Goooler](https://github.com/Goooler) for his contribution.
 
 ### Changed
 
