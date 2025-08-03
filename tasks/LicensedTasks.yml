@@ -3,10 +3,18 @@
 version: '3'
 
 tasks:
-  list:
+  list:dependencies:
     desc: List dependencies
     cmds:
     - licensed list
+    silent: true
+
+  list:licenses:
+    desc: List licenses
+    dir: .licenses
+    cmds:
+    - |
+      find . -name '*.yml' -type f -exec grep -h 'license: ' {} + | sed 's/^license: //' | sort -u
     silent: true
 
   status:
