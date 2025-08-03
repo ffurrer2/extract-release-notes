@@ -1,3 +1,5 @@
+name: JavaScript CodeQL Configuration
+
 paths-ignore:
-- dist
-- node_modules
+  - node_modules
+  - dist
