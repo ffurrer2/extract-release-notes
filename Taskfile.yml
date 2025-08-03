@@ -56,6 +56,6 @@ tasks:
       printf 'ncc:      %s\n' "$(ncc version)"
       printf 'node:     %s\n' "$(node --version | cut -c 2-)"
       printf 'npm:      %s\n' "$(npm --version)"
-      printf 'task:     %s\n' "$(task --version | cut -d ' ' -f 3)"
+      printf 'task:     %s\n' "$(task --version)"
       printf 'yamllint: %s\n' "$(yamllint --version | cut -d ' ' -f 2)"
     silent: true
