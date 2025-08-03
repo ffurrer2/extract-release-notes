@@ -2,14 +2,14 @@
 name: markdownlint
 
 on:
-  push:
+  pull_request:
     branches:
     - main
     paths:
     - '**.md'
     - '.github/linters/.markdown-lint.yml'
     - '.github/workflows/markdownlint.yml'
-  pull_request:
+  push:
     branches:
     - main
     paths:
