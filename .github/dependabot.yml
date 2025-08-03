@@ -1,18 +1,16 @@
 version: 2
-
 updates:
 - package-ecosystem: github-actions
   directory: /
   schedule:
     interval: monthly
-  assignees:
-  - ffurrer2
   labels:
   - dependabot
-  open-pull-requests-limit: 999
   rebase-strategy: auto
   groups:
     actions-minor:
+      patterns:
+      - '*'
       update-types:
       - minor
       - patch
@@ -21,11 +19,8 @@ updates:
   directory: /
   schedule:
     interval: monthly
-  assignees:
-  - ffurrer2
   labels:
   - dependabot
-  open-pull-requests-limit: 999
   rebase-strategy: auto
   groups:
     npm-minor:
