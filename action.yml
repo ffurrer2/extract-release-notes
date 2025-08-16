@@ -20,5 +20,5 @@ outputs:
   release_notes:
     description: 'The escaped release notes.'
 runs:
-  using: node20
+  using: node24
   main: dist/index.js
