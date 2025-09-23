@@ -40,7 +40,7 @@ jobs:
         npm ci
 
     - name: Setup Ruby
-      uses: ruby/setup-ruby@1dc795682739d28740ac76bf40227b89f2ab602a # v1.260.0
+      uses: ruby/setup-ruby@0481980f17b760ef6bca5e8c55809102a0af1e5a # v1.263.0
       with:
         ruby-version: ruby
 
