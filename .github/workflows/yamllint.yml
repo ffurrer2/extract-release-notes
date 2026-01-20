@@ -19,4 +19,4 @@ permissions:
 jobs:
   yamllint:
     name: yamllint
-    uses: ffurrer2/shared-workflows/.github/workflows/yamllint.yml@d65c1588151734f0d806b9cea91dcbff1bf062d8
+    uses: ffurrer2/shared-workflows/.github/workflows/yamllint.yml@b7ce2f55881e888f841c657bec434cb91e1fc7c3
