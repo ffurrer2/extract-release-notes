@@ -20,6 +20,6 @@ on:
 jobs:
   markdownlint:
     name: markdownlint
-    uses: ffurrer2/shared-workflows/.github/workflows/markdownlint.yml@b7ce2f55881e888f841c657bec434cb91e1fc7c3
+    uses: ffurrer2/shared-workflows/.github/workflows/markdownlint.yml@11e94ac74bdd60c2a695b8d46a436811581fee27
     with:
       ignore-files: 'test/testdata/expected'
