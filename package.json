@@ -53,7 +53,7 @@
     "eslint-plugin-prettier": "5.5.5",
     "jest": "30.2.0",
     "make-coverage-badge": "1.2.0",
-    "npm-check-updates": "19.3.1",
+    "npm-check-updates": "19.3.2",
     "prettier": "3.8.1",
     "prettier-eslint": "16.4.2",
     "rollup": "4.56.0"
