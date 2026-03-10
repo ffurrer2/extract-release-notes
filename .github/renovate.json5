@@ -2,5 +2,20 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "local>ffurrer2/renovate-config//default.json5"
+  ],
+  "pre-commit": {
+    "enabled": true
+  },
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": "Update _VERSION variables in GitHub workflow env blocks",
+      "managerFilePatterns": [
+        "/(^|/)(workflow-templates|\\.(?:github|gitea|forgejo)/(?:workflows|actions))/.+\\.ya?ml$/"
+      ],
+      "matchStrings": [
+        "# renovate: datasource=(?<datasource>[a-z-]+)(?: depName=(?<depName>[^\\s]+))?(?: packageName=(?<packageName>[^\\s]+))?(?: versioning=(?<versioning>[a-z-]+))?\\s*\\n\\s+(?<varName>[A-Z0-9_]+_VERSION): ['\"]?(?<currentValue>[0-9a-zA-Z\\.-]+)['\"]?"
+      ]
+    }
   ]
 }

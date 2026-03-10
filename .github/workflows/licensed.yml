@@ -17,7 +17,8 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  LICENSED_VERSION: 5.x
+  # renovate: datasource=github-releases depName=licensed packageName=licensee/licensed versioning=semver
+  LICENSED_VERSION: '5.0.4'
 
 jobs:
   licensed:
