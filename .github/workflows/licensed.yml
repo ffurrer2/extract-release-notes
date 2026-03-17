@@ -18,7 +18,7 @@ concurrency:
 
 env:
   # renovate: datasource=github-releases depName=licensed packageName=licensee/licensed versioning=semver
-  LICENSED_VERSION: '5.0.4'
+  LICENSED_VERSION: '5.0.6'
 
 jobs:
   licensed:
