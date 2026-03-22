@@ -1,0 +1,26 @@
+# SPDX-License-Identifier: MIT
+name: Close stale issues and PRs
+on:
+  schedule:
+  - cron: "0 0 * * *" # Runs every day at midnight
+
+jobs:
+  stale:
+    runs-on: ubuntu-24.04
+    permissions:
+      actions: write
+      issues: write
+      pull-requests: write
+    steps:
+    - uses: actions/stale@b5d41d4e1d5dceea10e7104786b73624c18a190f # v10.2.0
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        days-before-stale: 30
+        days-before-close: 7
+        stale-issue-message: >
+          This issue is stale because it has been open 30 days with no activity. Please comment if this is still relevant.
+        stale-pr-message: >
+          This PR is stale because it has been open 30 days with no activity. Please comment if this is still relevant.
+        stale-issue-label: stale
+        stale-pr-label: stale
+        exempt-issue-labels: renovate
