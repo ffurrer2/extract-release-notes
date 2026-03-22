@@ -37,8 +37,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "3.0.0",
-    "@actions/github": "9.0.0"
+    "@actions/core": "3.0.0"
   },
   "devDependencies": {
     "@eslint/compat": "2.0.3",
@@ -55,8 +54,8 @@
     "make-coverage-badge": "1.2.0",
     "npm-check-updates": "19.6.5",
     "prettier": "3.8.1",
-    "prettier-eslint": "16.4.2",
-    "rollup": "4.59.1"
+    "prettier-eslint": "16.3.0",
+    "rollup": "4.60.0"
   },
   "optionalDependencies": {
     "@rollup/rollup-linux-x64-gnu": "*"
