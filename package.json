@@ -40,7 +40,7 @@
     "@actions/core": "3.0.0"
   },
   "devDependencies": {
-    "@eslint/compat": "2.0.3",
+    "@eslint/compat": "2.0.4",
     "@github/local-action": "7.0.1",
     "@jest/globals": "30.3.0",
     "@rollup/plugin-commonjs": "29.0.2",
