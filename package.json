@@ -54,7 +54,7 @@
     "make-coverage-badge": "1.2.0",
     "npm-check-updates": "23.1.0",
     "prettier": "3.9.6",
-    "prettier-eslint": "17.1.1",
+    "prettier-eslint": "17.1.2",
     "rollup": "4.63.1"
   },
   "optionalDependencies": {
