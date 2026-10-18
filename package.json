@@ -55,7 +55,7 @@
     "npm-check-updates": "23.1.0",
     "prettier": "3.9.10",
     "prettier-eslint": "17.1.2",
-    "rollup": "4.64.5"
+    "rollup": "4.64.9"
   },
   "optionalDependencies": {
     "@rollup/rollup-linux-x64-gnu": "*"
